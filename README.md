@@ -84,8 +84,21 @@ Desde EdenFornia Solutions®, se propone abordar esta problemática con la creac
 
 # Características de los datos
 
+</p>
+Para garantizar la calidad y eficacia de la integración de los datos en un sistema de almacenamiento (ETL) para su posterior uso en la plataforma, es fundamental obtener una visión general de la estructura y el contenido de los datos. Esto incluye la creación de un diccionario de datos, la elaboración del Diagrama Entidad-Relación y la realización de análisis exploratorios de los datos (EDA). Debido a la variedad de instituciones, locales, servicios y lugares públicos que tienen reseñas, estos datos son una excelente fuente para nuestra aplicación, proporcionando información valiosa que puede ser aprovechada para mejorar nuestras recomendaciones y la experiencia del usuario.
+<p align="justify">
+
 # Plan de trabajo
 
+</p>
+En nuestro plan de trabajo, nos centramos en tres aspectos clave. Primero, asignamos roles dentro del equipo para aprovechar las habilidades individuales y definir claramente las responsabilidades. Luego, a partir de la metodología Agile, se definieron las actividades a realizar en tres Sprints y creamos un cronograma detallado utilizando Notion, lo que nos permitió establecer plazos realistas y mantenernos alineados con los objetivos. Por último, definimos nuestro stack tecnológico con base en las necesidades específicas de la aplicación, asegurándonos de seleccionar las herramientas adecuadas para el desarrollo eficiente y el rendimiento óptimo. Estas estrategias fueron fundamentales para coordinar nuestros esfuerzos y avanzar de manera estructurada hacia nuestros objetivos.
+<p align="justify">
+
+## Cronograma
+
+## Stack Tecnológico
+
+Mediant
 
 * Tipo de muestras: CLP y SHAM
 * Días de adquisición: 1, 2, 4 y 7
