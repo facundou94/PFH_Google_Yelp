@@ -1,6 +1,10 @@
 <h1 align="center"> PROYECTO FINAL HENRY: GOOGLE - YELP  </h1>
 <h3 align="center"> Equipo de trabajo: Camino Federico, Londero Walter, Pizarro Hernan, Urteaga Facundo, Veron Cintia </h3>
 
+   <p align="center">
+   <img src='Imagenes/1_logo.JPG' width='400'>
+   </p>
+
 <p align="left">
    <img src="https://img.shields.io/badge/ESTADO-EN%20DESAROLLO-green">
    </p>
