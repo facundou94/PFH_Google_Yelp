@@ -1,3 +1,7 @@
+# Diagrama Entidad-relación
+
+![DER](src/DER.png)
+
 # Requerimientos de almacenamiento
 
 ## Reviews
