@@ -7,23 +7,33 @@
 
 ## Índice
 
-*[Descripción_del_proyecto](#descripción_del_proyecto)
+*[Descripción del proyecto](#descripción_del_proyecto)
 
 *[Introducción](#introducción)
 
-*[Situación_problemática](#situación_problemática)
+*[Situación problemática](#situación_problemática)
 
-*[Propuesta_de_trabajo](#propuesta_de_trabajo)
+*[Propuesta de trabajo](#propuesta_de_trabajo)
 
-*[Características_de_los_datos](#características_de_los_datos)
+*[Características de los datos](#características_de_los_datos)
 
-*[Plan_de_trabajo](#plan_de_trabajo)
+*[Plan de trabajo](#plan_de_trabajo)
 
 
-# Descripción del proyecto
+# Descripción del proyecto solicitado
+
+# Contexto
 
 <p align="justify">
 "La opinión de los usuarios es un dato muy valioso, que crece día a día gracias a plataformas de reseñas. Su análisis puede ser determinante para la planificación de estratenias. Yelp es una plataforma de reseñas de todo tipo de negocios, restaurantes, hoteles, servicios entre otros. Los usuarios utilizan el servicio y luego suben su reseña según la experiencia que han recibido. Esta información es muy valiosa para las empresas, ya que les sirve para enterarse de la imagen que tienen los usuarios de los distintos locales de la empresa, siendo útil para medir el desempeño, utilidad del local, además de saber en qué aspectos hay que mejorar el servicio. Además, Google posee una plataforma de reseñas de todo tipo de negocios, restaurantes, hoteles, servicios, entre otros integrada en su servicio de localización y mapas, Google Maps. Los usuarios utilizan el servicio y luego suben su reseña según la experiencia vivida. Muchos usuarios leen las reseñas de los lugares a los que planean ir para tomar decisiones sobre dónde comprar, comer, dormir, reunirse, etc. Esta información es muy valiosa para las empresas, ya que les sirve para enterarse de la imagen que tienen los usuarios de los distintos locales de la empresa, siendo muy útil para medir el desempeño, utilidad del local, además de identificar los aspectos del servicio a mejorar."
+</p>
+
+# Propuesta de trabajo
+
+<p align="justify">
+Recopilar, depurar y disponibilizar la información: Creación de una base de datos (DataWarehouse) de diferentes fuentes, tanto provistas por Henry como incorporadas por ustedes, corriendo en local o alojada en proveedores en la nube. La base de datos depurada deberá contemplar por lo menos dos tipos diferentes de extracción de datos, ejemplo: datos estáticos, llamadas a una API, scrapping, entre otros.
+Reporte y análisis significativos de la(s) línea(s) de investigación escogidas: El análisis debe contemplar las relaciones entre variables y concluir, si es que existe, una relación entre estas, y los posibles factores que causan dicha relación en la realidad.
+Entrenamiento y puesta en producción de un modelo de machine learning de clasificación no supervisado o supervisado: El modelo debe resolver un problema y conectar globalmente con los objetivos propuestos que se propongan como proyecto.
 </p>
 
 ## Características de las muestras
