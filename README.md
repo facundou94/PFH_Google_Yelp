@@ -25,7 +25,7 @@
 ## Contexto
 
 <p align="justify">
-"La opinión de los usuarios es un dato muy valioso, que crece día a día gracias a plataformas de reseñas. Su análisis puede ser determinante para la planificación de estratenias. Yelp es una plataforma de reseñas de todo tipo de negocios, restaurantes, hoteles, servicios entre otros. Los usuarios utilizan el servicio y luego suben su reseña según la experiencia que han recibido. Esta información es muy valiosa para las empresas, ya que les sirve para enterarse de la imagen que tienen los usuarios de los distintos locales de la empresa, siendo útil para medir el desempeño, utilidad del local, además de saber en qué aspectos hay que mejorar el servicio. Además, Google posee una plataforma de reseñas de todo tipo de negocios, restaurantes, hoteles, servicios, entre otros integrada en su servicio de localización y mapas, Google Maps. Los usuarios utilizan el servicio y luego suben su reseña según la experiencia vivida. Muchos usuarios leen las reseñas de los lugares a los que planean ir para tomar decisiones sobre dónde comprar, comer, dormir, reunirse, etc. Esta información es muy valiosa para las empresas, ya que les sirve para enterarse de la imagen que tienen los usuarios de los distintos locales de la empresa, siendo muy útil para medir el desempeño, utilidad del local, además de identificar los aspectos del servicio a mejorar."
+La opinión de los usuarios es un dato muy valioso, que crece día a día gracias a plataformas de reseñas. Su análisis puede ser determinante para la planificación de estratenias. Yelp es una plataforma de reseñas de todo tipo de negocios, restaurantes, hoteles, servicios entre otros. Los usuarios utilizan el servicio y luego suben su reseña según la experiencia que han recibido. Esta información es muy valiosa para las empresas, ya que les sirve para enterarse de la imagen que tienen los usuarios de los distintos locales de la empresa, siendo útil para medir el desempeño, utilidad del local, además de saber en qué aspectos hay que mejorar el servicio. Además, Google posee una plataforma de reseñas de todo tipo de negocios, restaurantes, hoteles, servicios, entre otros integrada en su servicio de localización y mapas, Google Maps. Los usuarios utilizan el servicio y luego suben su reseña según la experiencia vivida. Muchos usuarios leen las reseñas de los lugares a los que planean ir para tomar decisiones sobre dónde comprar, comer, dormir, reunirse, etc. Esta información es muy valiosa para las empresas, ya que les sirve para enterarse de la imagen que tienen los usuarios de los distintos locales de la empresa, siendo muy útil para medir el desempeño, utilidad del local, además de identificar los aspectos del servicio a mejorar.
 </p>
 
 ## Propuesta de trabajo
@@ -36,7 +36,21 @@ Reporte y análisis significativos de la(s) línea(s) de investigación escogida
 Entrenamiento y puesta en producción de un modelo de machine learning de clasificación no supervisado o supervisado: El modelo debe resolver un problema y conectar globalmente con los objetivos propuestos que se propongan como proyecto.
 </p>
 
-## Características de las muestras
+# Introducción
+
+## Quiénes somos
+
+</p>
+EdenFornia Solutions es una empresa innovadora que ofrece soluciones informáticas y aplicaciones especializadas para el sector inmobiliario, aprovechando el poder de la ciencia de datos y sus tecnologías asociadas. Nos dedicamos a transformar la manera en que se gestionan y operan las propiedades mediante el análisis avanzado de datos, inteligencia artificial y aprendizaje automático. Nuestro enfoque holístico se centra en el bienestar de las personas, proporcionando herramientas que optimizan la toma de decisiones, mejoran la eficiencia operativa y aumentan la rentabilidad para nuestros clientes. En EdenFornia Solutions, combinamos nuestra experiencia en tecnología con un profundo conocimiento del mercado inmobiliario para ofrecer productos que no solo satisfacen las necesidades específicas de nuestros usuarios, sino que también promueven su bienestar y calidad de vida.
+<p align="justify">
+
+## Equipo de trabajo
+
+</p>
+Nuestro equipo de trabajo en EdenFornia Solutions está conformado por un grupo interdisciplinario con experiencia en programación, ingeniería de software y relaciones humanas. Contamos con desarrolladores expertos en algoritmos de machine learning, ingenieros especializados en sistemas escalables y profesionales en gestión de relaciones con el cliente, todos trabajando en conjunto para ofrecer soluciones innovadoras y centradas en el bienestar de nuestros usuarios.
+<p align="justify">
+
+# Situación problemática
 
 * Tipo de muestras: CLP y SHAM
 * Días de adquisición: 1, 2, 4 y 7
