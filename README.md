@@ -112,11 +112,11 @@ Nuestros cuatro KPIs abordan aspectos clave del servicio inmobiliario, ofreciend
 <p align="justify">
 
 <p align="center">
-   <img src='Imagenes/desempeño1.png' width='400'>
+   <img src='Imagenes/desempeño1.JPG' width='400'>
    </p>
 
 <p align="center">
-   <img src='Imagenes/desempeño2.png' width='400'>
+   <img src='Imagenes/desempeño2.JPG' width='400'>
    </p>
 
 # Características de los datos
