@@ -1,5 +1,6 @@
 <h1 align="center"> PROYECTO FINAL HENRY: GOOGLE - YELP  </h1>
 <h3 align="center"> Equipo de trabajo: Camino Federico, Londero Walter, Pizarro Hernan, Urteaga Facundo, Veron Cintia </h3>
+<h3 align="center"> Sprint actual: Sprint 1</h3>
 
    <p align="center">
    <img src='Imagenes/1_logo.JPG' width='400'>
@@ -110,6 +111,14 @@ Desde EdenFornia Solutions®, se propone abordar esta problemática con la creac
 Nuestros cuatro KPIs abordan aspectos clave del servicio inmobiliario, ofreciendo una visión integral del rendimiento y la satisfacción del cliente. El KPI sobre el tiempo de vacancia de inmuebles permite evaluar la eficiencia operativa y la demanda del mercado, mientras que la tasa de renovación de contratos indica la fidelización de los inquilinos y la estabilidad de ingresos. El grado de satisfacción de los usuarios mide la calidad del servicio y la experiencia del cliente, y la relación de prospectos a inquilinos refleja la efectividad de nuestras estrategias de conversión. Esta variedad de KPIs abarca diferentes ámbitos del servicio inmobiliario, proporcionando una evaluación completa y equilibrada de nuestro desempeño y áreas de mejora.
 <p align="justify">
 
+<p align="center">
+   <img src='Imagenes/desempeño1.png' width='400'>
+   </p>
+
+<p align="center">
+   <img src='Imagenes/desempeño2.png' width='400'>
+   </p>
+
 # Características de los datos
 
 </p>
@@ -123,7 +132,15 @@ Para garantizar la calidad y eficacia de la integración de los datos en un sist
    <p align="center">
    <img src='Imagenes/7_calidad_yelp.JPG' width='400'>
    </p>
-   
+
+## Diagrama Entidad-relación
+
+El modelo de entidad relación muestra como por un lado se relacionan las tablas de google maps y las tablas de Yelp entre sí.
+Para relacionar las tablas de un sistema y otro vamos a utilizar la ubicación de los locales.
+Su dirección, y sus ubicaciones geolocalizadas, utilizando una exactitud de ésta última acorde a nuestra necesidad.
+![DER](src/DER.png)
+
+
 # Plan de trabajo
 
 </p>
@@ -131,6 +148,10 @@ En nuestro plan de trabajo, nos centramos en tres aspectos clave. Primero, asign
 <p align="justify">
 
 ## Cronograma
+
+</p>
+Mediante la metodología AGILE, se definió un plan de trabajo con tres Sprints con tareas y responsables definidos. Este sistema se implementó en Notion.
+<p align="justify">
 
    <p align="center">
    <img src='Imagenes/8_notion.JPG' width='400'>
@@ -140,6 +161,10 @@ En nuestro plan de trabajo, nos centramos en tres aspectos clave. Primero, asign
    </p>
    
 ## Stack Tecnológico
+
+</p>
+Nuestro stack tecnológico combina potentes herramientas locales y en la nube para ofrecer soluciones eficientes y escalables. En el ámbito local, utilizamos Python para la limpieza de datos y el desarrollo de modelos de machine learning, apoyándonos en Jupyter Notebooks para la exploración de datos y el desarrollo de modelos. Herramientas como Pandas, NumPy y Scikit-Learn son fundamentales para el análisis y modelado de datos. En la nube, Amazon S3 proporciona almacenamiento para datos sin procesar y resultados procesados, mientras que Amazon Redshift facilita el almacenamiento y análisis de datos estructurados. Utilizamos Amazon SageMaker para construir, entrenar y desplegar modelos de machine learning, y Looker Studio para la visualización y creación de dashboards interactivos. Este stack garantiza escalabilidad, flexibilidad y eficiencia, permitiéndonos integrar diversas tecnologías en un ecosistema robusto y económico, con herramientas avanzadas para machine learning y una gestión simplificada gracias a las interfaces amigables de AWS.
+<p align="justify">
 
    <p align="center">
    <img src='Imagenes/9_stack.JPG' width='400'>
