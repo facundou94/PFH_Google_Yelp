@@ -86,7 +86,9 @@ Por ejemplo, en áreas urbanas como Los Ángeles y San Francisco, la proximidad 
    <img src='Imagenes/4_logo_app.png' width='400'>
    </p>
    
+</p>   
 Desde EdenFornia Solutions®, se propone abordar esta problemática con la creación de la aplicación FindEdén®, integrando en su plataforma una metodología centrada en el cliente, basada en las filosofías de bienestar mencionadas. Utilizando un enfoque holístico, FindEdén® ofrecerá recomendaciones de propiedades no solo basadas en los criterios clásicos, sino también en factores clave del bienestar humano, asegurando que los usuarios encuentren un hogar que realmente se adapte a su estilo de vida y promueva su bienestar integral. Esta aplicación se podrá anexar a las bases de datos y motores de búsqueda convencionales de los servicios inmobiliarios. El usuario ingresará a la aplicación, y a partir de una serie de preguntas relacionadas a sus preferencias y modos de vida, y en conjunto con nuestra base de datos de reseñas, puntuará del 1 al 10 los inmuebles que ofrece la empresa. Los valores mas altos indicarán un mayor grado de conexión entre el inmueble y las preferencias y modo de vida del usuario.
+<p align="justify">
 
 ## Propuesta de valor
 
@@ -101,7 +103,13 @@ Desde EdenFornia Solutions®, se propone abordar esta problemática con la creac
    <p align="center">
    <img src='Imagenes/5_propuesta.JPG' width='400'>
    </p>
-   
+
+## Medidas de desempeño
+
+</p>
+Nuestros cuatro KPIs abordan aspectos clave del servicio inmobiliario, ofreciendo una visión integral del rendimiento y la satisfacción del cliente. El KPI sobre el tiempo de vacancia de inmuebles permite evaluar la eficiencia operativa y la demanda del mercado, mientras que la tasa de renovación de contratos indica la fidelización de los inquilinos y la estabilidad de ingresos. El grado de satisfacción de los usuarios mide la calidad del servicio y la experiencia del cliente, y la relación de prospectos a inquilinos refleja la efectividad de nuestras estrategias de conversión. Esta variedad de KPIs abarca diferentes ámbitos del servicio inmobiliario, proporcionando una evaluación completa y equilibrada de nuestro desempeño y áreas de mejora.
+<p align="justify">
+
 # Características de los datos
 
 </p>
