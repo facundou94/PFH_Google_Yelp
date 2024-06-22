@@ -12,7 +12,7 @@
 
 # Índice
 
-*[Descripción del proyecto](#descripción_del_proyecto)
+*[Descripción del proyecto solicitado](#descripción_del_proyecto_solicitado)
 
 *[Introducción](#introducción)
 
