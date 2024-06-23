@@ -1,6 +1,6 @@
 # Diagrama Entidad-relación
 
-![DER](src/DER.png)
+![DER](Imagenes/DER.png)
 
 # Requerimientos de almacenamiento
 
@@ -116,26 +116,26 @@ Sin nulos.
 ## Reviews
 
 ### rating  
-![rating](src/EDA-GoogleMaps/ratingsxreviews.png)
+![rating](Imagenes/EDA-GoogleMaps/ratingsxreviews.png)
 
 ### text 
-![text](src/EDA-GoogleMaps/Comentariosxreviews.png)
+![text](Imagenes/EDA-GoogleMaps/Comentariosxreviews.png)
 
 ### pics 
-![pics](src/EDA-GoogleMaps/Fotosxreviews.png)
+![pics](Imagenes/EDA-GoogleMaps/Fotosxreviews.png)
 
 ### resp 
-![resp](src/EDA-GoogleMaps/Respuestasxreviews.png)
+![resp](Imagenes/EDA-GoogleMaps/Respuestasxreviews.png)
 
 ### análisis por usuarios
 
 #### reviews
-![reviewsus](src/EDA-GoogleMaps/reviewsxusuario.png)
+![reviewsus](Imagenes/EDA-GoogleMaps/reviewsxusuario.png)
 
 #### rating
-![ratingus](src/EDA-GoogleMaps/Ratingxusuario.png)
+![ratingus](Imagenes/EDA-GoogleMaps/Ratingxusuario.png)
 
 #### fotos
-![fotosus](src/EDA-GoogleMaps/Fotosxusuario.png)
+![fotosus](Imagenes/EDA-GoogleMaps/Fotosxusuario.png)
 
 ## metadata-sitios

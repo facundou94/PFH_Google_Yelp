@@ -138,7 +138,7 @@ Para garantizar la calidad y eficacia de la integración de los datos en un sist
 El modelo de entidad relación muestra como por un lado se relacionan las tablas de google maps y las tablas de Yelp entre sí.
 Para relacionar las tablas de un sistema y otro vamos a utilizar la ubicación de los locales.
 Su dirección, y sus ubicaciones geolocalizadas, utilizando una exactitud de ésta última acorde a nuestra necesidad.
-![DER](src/DER.png)
+![DER](Imagenes/DER.png)
 
 
 # Plan de trabajo
