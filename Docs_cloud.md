@@ -110,4 +110,87 @@ Lo siguiente es corroborar que el permiso esta presente en el panel de IAM:
 
 Por último debemos enviar la direccion del Bucket a la persona a la que concedimos el permiso.
 
-## 2 - Crear un dataset en BigQuery
+## 2 - Crear un Datawerehouse en BigQuery
+
+BigQuery (no "BogQuery") es un almacén de datos empresarial completamente administrado en Google Cloud Platform (GCP). Es una solución potente y escalable para analizar grandes volúmenes de datos de manera rápida y eficiente. 
+
+**Características principales:**
+
+* **Almacenamiento escalable:** BigQuery puede almacenar petabytes de datos sin necesidad de administrar la infraestructura subyacente.
+* **Consultas rápidas:** Utiliza un motor de procesamiento distribuido para ejecutar consultas SQL estándar en segundos o minutos, incluso en conjuntos de datos masivos.
+* **Análisis en tiempo real:** Permite analizar datos en tiempo real a medida que se cargan en el almacén.
+* **Aprendizaje automático integrado:** Incluye funciones de aprendizaje automático para crear modelos predictivos y obtener información valiosa de los datos.
+* **Integración con otras herramientas de GCP:** Se integra fácilmente con otras herramientas de GCP, como Dataflow para procesamiento de datos por lotes y en tiempo real, y Looker para visualización de datos.
+
+**¿Para qué se utiliza BigQuery?**
+
+BigQuery se utiliza en una amplia variedad de casos de uso, incluyendo:
+
+* **Análisis de datos empresariales:** Para analizar datos de ventas, marketing, operaciones y otras áreas de negocio.
+* **Ciencia de datos:** Para explorar, analizar y modelar datos para obtener información valiosa.
+* **Análisis de registros:** Para analizar registros de aplicaciones, sistemas y dispositivos para identificar tendencias y problemas.
+* **Análisis de datos de IoT:** Para analizar datos de sensores y dispositivos conectados para optimizar operaciones y mejorar la eficiencia.
+
+**¿Cómo empezar con BigQuery?**
+
+Puedes empezar a utilizar BigQuery creando una cuenta de Google Cloud Platform y siguiendo la documentación oficial de BigQuery:
+
+* **Descripción general de BigQuery:** [https://cloud.google.com/bigquery/docs/introduction?hl=es-419](https://cloud.google.com/bigquery/docs/introduction?hl=es-419)
+
+También puedes encontrar tutoriales y ejemplos en línea para aprender a utilizar BigQuery de manera efectiva.
+
+### Pasos:
+
+Primeramente buscamos en el menú desplegable de GCP a BigQuery y luego BigQuery Studio:
+
+![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/14.png)
+
+Luego damos a AGREGAR, seleccionamos la opción que nos dice Google Cloud Storage:
+
+![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/15.png)
+
+En la segunda opción le damos a EXPLORAR y seleccionamos el Buket de origen de nuestros datos como en las siguientes imagenes:
+
+![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/16.png)
+
+![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/17.png)
+
+Debemos seleccionar la tabla con la que queremos trabajar en el caso de que sean más de una.
+
+Luego procedemos a dar nombre al conjunto de datos y luego a la tabla, estos nombres se deben crear como nuevo conjunto solo agregando el nombre y dejando tal cual la configuración regional:
+
+![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/18.png)
+
+En el caso de que los datos no debieran ser particionados le daríamos CREAR TABLA sin ninguna otra configuración. Por lo general el particionamiento en clustere es para mejorar la performance de consultas en grandes conjuntos de datos, a fines Didácticos realizaremos dicha clusterización.
+
+### Particiones y Clústeres en BigQuery:
+
+Las particiones y clústeres en BigQuery pueden utilizarse para implementar estrategias de carga incremental y optimizar consultas que filtran por un rango de fechas (como un "cut-off date").
+
+**Particiones:**
+
+* **Dividen una tabla en segmentos lógicos basados en el valor de una columna de fecha/hora/timestamp.** Esto permite a BigQuery leer solo los datos relevantes para una consulta, mejorando el rendimiento y reduciendo costos.
+* **Son ideales para cargas incrementales,** donde solo se agregan nuevos datos a la tabla. Puedes crear una partición por día, mes, año, etc., y luego cargar solo los datos correspondientes a la partición más reciente.
+* **Ejemplo:** Si tienes una tabla de ventas particionada por día, al consultar las ventas de un día específico, BigQuery solo leerá los datos de la partición correspondiente a ese día.
+
+**Clústeres:**
+
+* **Organizan los datos dentro de cada partición en función de los valores de una o más columnas.** Esto mejora aún más el rendimiento de las consultas que filtran por esas columnas.
+* **Son útiles cuando tienes consultas frecuentes que filtran por un rango de fechas y otras columnas.** Por ejemplo, si consultas las ventas de un producto específico en un mes determinado, BigQuery puede aprovechar los clústeres para encontrar los datos más rápidamente.
+
+**Relación con la carga incremental:**
+
+* **Las particiones facilitan la carga incremental al permitirte cargar solo los datos nuevos en la partición correspondiente.** Esto evita tener que reescribir toda la tabla cada vez que agregas datos.
+* **Los clústeres optimizan las consultas que filtran por un rango de fechas (como un "cut-off date"),** ya que BigQuery puede leer solo los clústeres relevantes dentro de las particiones correspondientes al rango de fechas.
+
+Primeramente seleccionamos para particionar por tiempo de transferencia:.
+
+luego seleccionamos el timpo, or lo que en nuestro caso es de un mes.
+
+Al seleccionar la obligatoriedad de consultas con where nos permite ubicar más rapidamente el cluster con la informas.
+
+Por ultimo damos CREAR TABLA:
+
+![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/19.png)
+
+
