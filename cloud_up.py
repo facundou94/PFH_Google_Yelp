@@ -9,7 +9,7 @@ def subir_archivo_gcs(nombre_archivo, ruta_archivo, nombre_bucket="findeden"):
         nombre_bucket: Nombre del bucket de destino (por defecto "findeden").
     """
     try:
-        storage_client = storage.Client.from_service_account_json('cellular-effect-427723-u2-b6a7a83563dc.json')
+        storage_client = storage.Client.from_service_account_json('ArchivosIgnore/gcp.json')
         bucket = storage_client.bucket(nombre_bucket)
         blob = bucket.blob(nombre_archivo)
 
