@@ -1,13 +1,16 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Importación Librerías
+# # Función para instalar/actualizar paquetes
 
 # In[1]:
 
 
-get_ipython().system('pip install pandas matplotlib numpy re time ast collections gdown ipykernel nbconvert ipython')
+# Ejecutar la función para instalar/actualizar paquetes
+get_ipython().run_line_magic('run', 'LocalFunctions/install_or_update_packages.py')
 
+
+# # Importación Librerías
 
 # In[2]:
 
@@ -26,15 +29,11 @@ import re
 import time
 
 
+# # Extracción
 
-# # Metadata  - Google
+# ## Descarga de Archivos
 
-# ## Importar los archivos desde la GoogleDrive
-
-# tamaño:
-# carpeta: 2,76 Gb
-# dataframe 370 Mb
-# csv 2,3 Gb
+# ### 1 - Metadata - Google
 
 # In[3]:
 
@@ -57,8 +56,8 @@ file_links = [
 # Nombres de los archivos locales (presumiendo que siguen el patrón 1.json, 2.json, ..., 11.json)
 file_names = [f'{i}.json' for i in range(1, len(file_links) + 1)]
 
-# Crear la carpeta ArchivosIgnore si no existe
-output_dir = 'ArchivosIgnore'
+# Crear la carpeta MetadataGoogle si no existe
+output_dir = 'datasets/MetadataGoogle'
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
@@ -97,64 +96,58 @@ for file_link, file_name in zip(file_links, file_names):
             os.remove(file_path)
 
 
+# #### Filtrar por Estado California
+
+# Este código combina varios DataFrames, filtra los datos por el estado de California y luego limpia el DataFrame resultante para que tenga un índice continuo y no tenga la columna de índice antigua.
+
 # In[4]:
 
 
-del df
+# Concatenar todos los DataFrames en uno solo
+if dataframes:
+    df_metadataGoogle = pd.concat(dataframes, ignore_index=True)
 
+    # Filtrar por el estado de California (CA)
+    df_metadataGoogle['estado'] = df_metadataGoogle['address'].str.extract(r', ([A-Z]{2}) \d{5}')
+    df_metadatosCA = df_metadataGoogle[df_metadataGoogle['estado'] == 'CA']
+
+    # Eliminar el DataFrame original para liberar memoria
+    del df_metadataGoogle
+
+    # Resetear índice y eliminar la columna de índice antigua
+    df_metadatosCA.reset_index(inplace=True)
+    df_metadatosCA.drop('index', axis='columns', inplace=True)
+
+
+# #### a - Eliminar duplicados
 
 # In[5]:
-
-
-# Concatenar todos los DataFrames en uno solo
-df_metadataGoog = pd.concat(dataframes, ignore_index=True)
-
-
-# In[6]:
-
-
-del dataframes
-
-
-# ## Filtrar por estado California
-
-# In[7]:
-
-
-#extraer el estado de la dirección
-df_metadataGoog['estado'] = df_metadataGoog['address'].str.extract(r', ([A-Z]{2}) \d{5}')
-#filtro los datos de California, para liberar espacio
-df_metadatosCA = df_metadataGoog[df_metadataGoog['estado'] == 'CA']
-#elimino el dataframe que tiene los metadatos de todos los estados, para liberar memoria
-del df_metadataGoog
-#reseteo indice
-df_metadatosCA.reset_index(inplace=True)
-df_metadatosCA.drop('index', axis='columns', inplace=True)
-
-
-# ## Eliminar duplicados
-
-# In[8]:
 
 
 df_metadatosCA.drop_duplicates(subset=['gmap_id'], inplace=True)
 
 
-# ## Armado de columnas
-
-# In[9]:
+# In[6]:
 
 
-#solo para usar cuando se quiere importar el archivo
-#df_metadatosCA=pd.read_parquet('Archivos/metadatosCA.parquet', engine='pyarrow')
+# Guardar el DataFrame filtrado en un archivo CSV
+output_csv_path = os.path.join(output_dir, 'MetadataGoogle.csv')
+df_metadatosCA.to_csv(output_csv_path, index=False)
+
+# Eliminar DataFrames de la memoria
+del dataframes
 
 
-# ### Extraer Ciudad
+# #### b - Extraer Ciudad
 
-# In[10]:
+# Este código de Python está diseñado para extraer la ciudad de una columna de direcciones en un DataFrame de Pandas llamado df_metadatosCA.
+# 
+# Este código toma un DataFrame con direcciones y crea una nueva columna que contiene los nombres de las ciudades extraídas. Se basa en una expresión regular para identificar y extraer el nombre de la ciudad según un formato de dirección común.
+
+# In[7]:
 
 
-# Función para extraer la ciudad
+# Función para extraer la ciudad y colocarla en una nueva columna
 def extract_city(address):
     match = re.search(r',\s*([^,]+),\s*[A-Z]{2}\s*\d{5}', address)
     if match:
@@ -165,9 +158,15 @@ def extract_city(address):
 df_metadatosCA['city'] = df_metadatosCA['address'].apply(extract_city)
 
 
-# ### Hours
+# #### c - Horas de Atención
 
-# In[11]:
+# Este script de Python está diseñado para analizar horarios de apertura y cierre de negocios y calcular las horas diurnas y nocturnas que están abiertos. 
+# 
+# Estas líneas usan la función apply para aplicar las funciones calculate_day_hours y calculate_night_hours a cada fila de la columna "hours" del DataFrame df_metadatosCA. El resultado de cada función se guarda en una nueva columna con el nombre correspondiente.
+# 
+# 
+
+# In[8]:
 
 
 # Función para asegurarse de que el tiempo esté en el formato "HH:MMAM/PM"
@@ -186,6 +185,10 @@ def ensure_time_format(time_str):
     except Exception as e:
         print(f"Error formatting time: {time_str}, error: {e}")
     return None
+
+
+# In[9]:
+
 
 # Función para calcular las horas diurnas (8 AM - 10 PM)
 def calculate_day_hours(hours_array):
@@ -215,6 +218,10 @@ def calculate_day_hours(hours_array):
 
                         total_day_hours += max(0, close_hour - open_hour)
     return total_day_hours
+
+
+# In[10]:
+
 
 # Función para calcular las horas nocturnas (10 PM - 8 AM)
 def calculate_night_hours(hours_array):
@@ -246,14 +253,26 @@ def calculate_night_hours(hours_array):
                         total_night_hours += max(0, night_hours)
     return total_night_hours
 
+
+# In[11]:
+
+
 # Aplicar las funciones al DataFrame
 df_metadatosCA['Hours_day'] = df_metadatosCA['hours'].apply(calculate_day_hours)
 df_metadatosCA['Hours_night'] = df_metadatosCA['hours'].apply(calculate_night_hours)
 
 
-# ### Categorias
+# #### d - Contabilizar Categorías
+
+# Este código de Python está diseñado para analizar las categorías de negocios en un DataFrame llamado df_metadatosCA y contar cuántas veces aparece cada categoría. 
 
 # In[12]:
+
+
+df_metadatosCA.head(5)
+
+
+# In[13]:
 
 
 # Expandir las listas en filas individuales
@@ -262,19 +281,28 @@ categorias_expandidas = df_metadatosCA['category'].explode()
 # Contar las ocurrencias de cada categoría
 conteo_categorias = categorias_expandidas.value_counts()
 
+categorias_expandidas
+
+
+# In[14]:
+
+
+num_categorias = len(conteo_categorias)
+print(f"La Serie tiene {num_categorias} categorías únicas.")
+
+
+# In[15]:
+
+
 # Eliminar la serie que ya no se usa
 del categorias_expandidas
 
 
-# In[13]:
+# #### e -Explotar la columna MISC
 
+#  Este código de Python está diseñado para tomar un DataFrame llamado df_metadatosCA que tiene una columna llamada 'MISC' que contiene diccionarios, y expandir esos diccionarios en nuevas columnas en el DataFrame.
 
-conteo_categorias.to_csv('Archivos/categoriasCA.csv')
-
-
-# ### Explotar columna MISC
-
-# In[14]:
+# In[16]:
 
 
 # Función para extraer y expandir los diccionarios en nuevas columnas
@@ -301,78 +329,26 @@ df_metadatosCA.drop(columns='MISC', inplace=True)
 del expanded_df
 
 
-# ## Exportaciones
-
-# In[15]:
-
-
-# Elegir ciudad
-ciudadelegida='Los Angeles'
-
-
-# ### Listado de negocios de la ciudad
-
-# In[16]:
-
-
-#filtro el listado
-negocios=df_metadatosCA['gmap_id'][df_metadatosCA['city'] == ciudadelegida]
-
-
 # In[17]:
 
 
-#lo exporto a un csv
-negocios.to_csv('Archivos/negociosciudad.csv', index=False)
+df_metadatosCA.head(3)
 
-
-# ### Machine Learning
 
 # In[18]:
 
 
-# Elegir ciudad
-ciudadelegida='Los Angeles'
+# Verifica si la carpeta 'Archivos' existe, si no, la crea
+if not os.path.exists('Archivos'):
+    os.makedirs('Archivos')
 
+# Guarda el DataFrame en un archivo CSV en la carpeta 'Archivos'
+conteo_categorias.to_csv('Archivos/categoriasCA.csv')
+
+
+# ### 2 - Reviews Estados - Google
 
 # In[19]:
-
-
-# Generar el dataframe a exportar
-df_ML = df_metadatosCA.loc[df_metadatosCA['city'] == ciudadelegida, 
-                           ['address', 'gmap_id', 'latitude', 'longitude',
-                            'category', 'avg_rating', 'num_of_reviews', 'Hours_day', 'Hours_night']]
-
-# Exportar el dataframe
-df_ML.to_csv('Archivos/metadatos_ML.csv', index=False)
-
-
-# ### EDA
-
-# In[20]:
-
-
-df_metadatosCA['Service options'].value_counts()
-
-
-# In[21]:
-
-
-df_metadatosCA.drop(columns=['name', 'description', 'hours', 'state', 'relative_results', 'From the business'], inplace=True)
-
-
-# In[22]:
-
-
-#guardo el archivo parquet, para poder importarlo si es necesario
-df_metadatosCA.to_parquet('Archivos/metadatosCA.parquet', engine='pyarrow')
-
-
-# # Reviews Estados - Google
-
-# ## Importar datos
-
-# In[23]:
 
 
 # IDs de los archivos de Google Drive
@@ -397,8 +373,19 @@ file_links = [
     'https://drive.google.com/file/d/1_Ik1uLilfLe0MEb1Gia-t9SpE1Wwdwnm'
 ]
 
+# Nombre de la carpeta que quieres crear
+carpeta_destino = 'datasets/ReviewsEstadosGoogle'
+
+# Verificar si la carpeta existe
+if not os.path.exists(carpeta_destino):
+    # Crear la carpeta si no existe
+    os.makedirs(carpeta_destino)
+    print(f"Se ha creado la carpeta: {carpeta_destino}")
+else:
+    print(f"La carpeta {carpeta_destino} ya existe.")
+    
 # Nombres de los archivos locales (presumiendo que siguen el patrón 1.json, 2.json, ..., 11.json)
-file_names = [f'ArchivosIgnore/{i}.json' for i in range(1, len(file_links) + 1)]
+file_names = [f'datasets/ReviewsEstadosGoogle/{i}.json' for i in range(1, len(file_links) + 1)]
 
 # Inicializar una lista para almacenar los DataFrames
 dataframes = []
@@ -431,120 +418,84 @@ for file_link, file_name in zip(file_links, file_names):
     except Exception as e:
         print(f"Error al procesar el archivo {file_name}: {e}")
 
-
-# In[24]:
-
-
 del df
-
-
-# In[25]:
-
 
 # Concatenar todos los DataFrames en uno solo
 df_reviewsGoogle = pd.concat(dataframes, ignore_index=True)
 
 
-# In[26]:
+# #### a - Eliminación de duplicados
 
+#  Este código elimina las filas duplicadas del DataFrame df_reviewsGoogle solo si las filas tienen los mismos valores en las columnas 'user_id', 'time' y 'gmap_id'. Esto es útil para asegurar que cada combinación única de estas tres columnas represente una reseña única.
 
-del dataframes
-
-
-# In[27]:
-
-
-del file_link
-del file_name
-del file_names
-del file_links
-del first_char
-
-
-# Espacio que ocupan
-# Carpeta: 763 Mb (3,8 segundos en importar para una lista, 48,44 segundos para pasarlo a dataframe)
-# Dataframe: 164,8 Mb
-# CSV: 545 Mbs
-
-# ## Eliminación de duplicados
-
-# In[28]:
+# In[20]:
 
 
 df_reviewsGoogle.drop_duplicates(subset=['user_id', 'time', 'gmap_id'], inplace=True)
 
 
-# ## Columnas
+# #### b - Tratamiento de Variables
 
-# In[29]:
+# Este código crea una nueva columna 'has_text' en el DataFrame df_reviewsGoogle. Esta columna tendrá un valor de 1 si la columna 'text' contiene texto real (no está vacía o solo espacios en blanco) y 0 si no contiene texto real.
+
+# In[21]:
 
 
-#si tiene texto
+# Si contiene texto
 df_reviewsGoogle['has_text'] = df_reviewsGoogle['text'].apply(lambda x: 1 if isinstance(x, str) and len(x.strip()) > 0 else 0)
 
 
-# In[30]:
+# Este código crea una nueva columna 'num_pics' en el DataFrame df_reviewsGoogle. Esta columna tendrá un valor que representa la cantidad de elementos en la lista que se encuentra en la columna 'pics' para cada fila. Si la columna 'pics' no contiene una lista, la columna 'num_pics' tendrá un valor de 0.
+
+# In[22]:
 
 
-#cantidad de fotos
+# Cantidad de fotos
 df_reviewsGoogle['num_pics'] = df_reviewsGoogle['pics'].apply(lambda x: len(x) if isinstance(x, list) else 0)
 
 
-# In[31]:
+# Este código crea una nueva columna 'has_resp' en el DataFrame df_reviewsGoogle. Esta columna tendrá un valor de 1 si la columna 'resp' contiene un diccionario no vacío y 0 si no lo contiene.
+
+# In[23]:
 
 
-#si tiene respuesta
+# Si tiene respuesta
 df_reviewsGoogle['has_resp'] = df_reviewsGoogle['resp'].apply(lambda x: 1 if isinstance(x, dict) and len(x) > 0 else 0)
 
 
-# ## Exportaciones
+# In[24]:
 
-# ### Machine Learning
 
-# In[32]:
+df_reviewsGoogle
+
+
+# #### c - Machine Learning
+
+# El código filtra el conjunto de datos df_reviewsGoogle para obtener solo las reseñas que corresponden a los negocios que están en la lista "negocios". Luego, crea un nuevo conjunto de datos llamado df_reviewsGoogle_ML que contiene solo las columnas "user_id", "time", "rating" y "gmap_id" de las reseñas filtradas.
+# 
+# ¿Para qué se utiliza este código?
+# 
+# Este código parece ser un paso inicial para preparar los datos para un modelo de Machine Learning. Al filtrar las reseñas de los negocios que te interesan, estás creando un conjunto de datos específico que puedes usar para entrenar un modelo que prediga algo relacionado con las reseñas, como la calificación promedio de un negocio o la probabilidad de que un usuario deje una reseña positiva.
+
+# In[25]:
 
 
 #filtro por los negocios de la ciudad
-df_reviewsGoogle_ML = df_reviewsGoogle[df_reviewsGoogle['gmap_id'].isin(negocios)][['user_id', 'time', 'rating', 'gmap_id']]
+#df_reviewsGoogle_ML = df_reviewsGoogle[df_reviewsGoogle['gmap_id'].isin(negocios)][['user_id', 'time', 'rating', 'gmap_id']]
 
 
-# In[33]:
+# In[26]:
 
 
-#esportar a un csv
-df_reviewsGoogle_ML.to_csv('Archivos/reviewsGoogle_ML.csv', index=False)
+#filtro por los negocios de la ciudad
+#df_reviewsGoogle_ML = df_reviewsGoogle[df_reviewsGoogle['gmap_id'].isin(negocios)][['user_id', 'time', 'rating', 'gmap_id']]
 
 
-# ### EDA
+# ### 3 - Business - Google YELP
 
-# In[34]:
+# #### Importar los archivos desde la nube:
 
-
-#eliminar columnas innecesarias
-df_reviewsGoogle.drop(columns=['name', 'text', 'pics', 'resp'], inplace=True)
-
-
-# In[35]:
-
-
-#esportar a un parquet
-df_reviewsGoogle.to_parquet('ArchivosIgnore/ReviewsGoogle.parquet', engine='pyarrow')
-
-
-# ### Eliminacion de dfs
-
-# In[36]:
-
-
-del df_reviewsGoogle
-del df_reviewsGoogle_ML
-
-
-# # Business - YELP
-
-# ## Importar los archivos desde la nube
-
-# In[37]:
+# In[27]:
 
 
 # ID del archivo de Google Drive
@@ -553,8 +504,19 @@ file_id = '1byFtzpZXopdCN-XYmMHMpZqzgAqfQBBu'
 # Construir la URL de descarga
 download_url = f'https://drive.google.com/uc?id={file_id}'
 
+# Nombre de la carpeta que quieres crear
+carpeta_destino = 'datasets/BusinessYelp'
+
+# Verificar si la carpeta existe
+if not os.path.exists(carpeta_destino):
+    # Crear la carpeta si no existe
+    os.makedirs(carpeta_destino)
+    print(f"Se ha creado la carpeta: {carpeta_destino}")
+else:
+    print(f"La carpeta {carpeta_destino} ya existe.")
+
 # Nombre del archivo local
-file_path = 'ArchivosIgnore/business.pkl'
+file_path = "datasets/BusinessYelp/business.pkl"
 
 # Verificar si el archivo ya está descargado
 if not os.path.exists(file_path):
@@ -579,135 +541,124 @@ else:
     print(f"El archivo '{file_path}' no está disponible para cargar en el DataFrame.")
 
 
-# ## Eliminacion de duplicados
+# #### a Eliminar columnas Duplicadas
 
-# In[38]:
-
-
-df_business.columns
+# In[28]:
 
 
-# In[39]:
+# Supongamos que tienes un DataFrame llamado df_business
+columnas_ordenadas = df_business.columns.sort_values()  # Ordenamos alfabéticamente
+
+# Creamos un DataFrame auxiliar para mostrar en formato de tabla
+df_tabla = pd.DataFrame({'Columnas': columnas_ordenadas})
+
+# Mostramos el DataFrame en formato de tabla
+display(df_tabla)
+
+
+# Este código elimina todas las columnas duplicadas excepto la primera aparición.
+
+# In[29]:
+
+
+# Ejecutamos la eliminación en un DataFrame llamado df_business
+df_business = df_business.loc[:, ~df_business.columns.duplicated()]
+
+
+# In[30]:
+
+
+# Supongamos que tienes un DataFrame llamado df_business
+columnas_ordenadas = df_business.columns.sort_values()  # Ordenamos alfabéticamente
+
+# Creamos un DataFrame auxiliar para mostrar en formato de tabla
+df_tabla = pd.DataFrame({'Columnas': columnas_ordenadas})
+
+# Mostramos el DataFrame en formato de tabla
+display(df_tabla)
+
+
+# #### b - Eliminación de Duplicados
+
+# In[31]:
 
 
 df_business.drop_duplicates(subset=['business_id'], inplace=True)
 
 
-# ### Elimino columnas duplicadas
+# #### c - Filtrar por Estado de California
 
-# In[40]:
-
-
-#renombro y saco columnas
-df_business.columns=['business_id', 'name', 'address', 'city', 'state', 'postal_code',
-       'latitude', 'longitude', 'stars', 'review_count', 'is_open',
-       'attributes', 'categories', 'hours', 'business_id2', 'name2', 'address2',
-       'city2', 'state2', 'postal_code2', 'latitude2', 'longitude2', 'stars2',
-       'review_count2', 'is_open2', 'attributes2', 'categories2', 'hours2']
-
-df_business.drop(columns=['business_id2', 'name2', 'address2',
-       'city2', 'state2', 'postal_code2', 'latitude2', 'longitude2', 'stars2',
-       'review_count2', 'is_open2', 'attributes2', 'categories2', 'hours2'], inplace=True)
-
-
-# ## Filtrado por california
-
-# In[41]:
+# In[32]:
 
 
 # Luego, aplica el filtro para las empresas en California (por código postal)
 df_business_CA = df_business[(df_business['postal_code'] >= '90000') & (df_business['postal_code'] <= '96612')]
 
 
-# In[42]:
+# In[33]:
 
 
 del df_business
 
 
-# ## Filtrado por Los Angeles 
+# #### d - Filtrar por Ciudad de Los Angeles
 
-# In[43]:
+# In[34]:
 
 
 df_business_LA = df_business_CA[(df_business_CA['postal_code'] >= '90000') & (df_business_CA['postal_code'] <= '91609')]
 
 
-# ## Transformación de los Datos 
-# 
+# #### e - Eliminación de columnas
 
-# In[44]:
-
-
-# Elimina valores nulos en las columnas attributes y hours
-df_business_CA= df_business_CA.dropna(subset=['attributes', 'hours'])
-
-# Modificación del tipo  de datos en las columnas 'latitude','longitud','stars','review_count','is-open'
-
-df_business_CA['latitude'] = pd.to_numeric(df_business_CA['latitude'], errors='coerce')
-df_business_CA['longitude'] = pd.to_numeric(df_business_CA['longitude'], errors='coerce')
-df_business_CA['stars'] = pd.to_numeric(df_business_CA['stars'], errors='coerce')
-df_business_CA['review_count'] = pd.to_numeric(df_business_CA['review_count'], errors='coerce')
-df_business_CA['is_open'] = pd.to_numeric(df_business_CA['is_open'], errors='coerce')
-
-
-# ## Eliminacion de columnas
-
-# In[45]:
-
-
-df_business_CA.drop(columns=['is_open'], inplace=True)
-
-
-# In[46]:
+# In[35]:
 
 
 #Elimino columnas que no se usan del DF dpara ML
-df_business_LA.drop(columns=['state', 'postal_code','is_open','hours'], inplace=True)
+df_business_LA.drop(columns=['state', 'postal_code','is_open','hours', 'is_open'], inplace=True)
 
 
-# ## Exportación
+# #### f - Exportamos archivos según sea necesario:
 
-# In[47]:
+# In[36]:
 
 
 #guardo el archivo parquet, para poder importarlo si es necesario
 df_business_CA.to_parquet('Archivos/business_CA_Yelp.parquet', engine='pyarrow')
 
 
-# In[48]:
+# In[37]:
 
 
 #csv para ML
 df_business_LA.to_csv('Archivos/business_ML.csv', index=False)
 
 
-# In[49]:
+# In[38]:
 
 
 #Listado de negocios de YELP
 businessCA=df_business_CA['business_id']
 
 
-# In[50]:
+# In[39]:
 
 
 businessCA.to_csv('Archivos/yelpCA.csv', index=False)
 
 
-# In[51]:
+# In[40]:
 
 
 businessML=df_business_LA['business_id']
 businessML.to_csv('Archivos/BusinesslistYELPML.csv', index=False)
 
 
-# # Review - YELP
-# 
+# ### 4 - Reviews Google YELP
 
-# ## Importacion de los datos
+# #### Importamos los datos:
 
-# In[55]:
+# In[41]:
 
 
 # ID del archivo de Google Drive
@@ -716,8 +667,19 @@ file_id = '1mwNNdOMSNty6WumYdH9FJNJZJYQ6oD1c'
 # URL de descarga directa desde Google Drive
 url = f'https://drive.google.com/uc?id={file_id}'
 
+# Nombre de la carpeta que quieres crear
+carpeta_destino = 'datasets/ReviewYelp'
+
+# Verificar si la carpeta existe
+if not os.path.exists(carpeta_destino):
+    # Crear la carpeta si no existe
+    os.makedirs(carpeta_destino)
+    print(f"Se ha creado la carpeta: {carpeta_destino}")
+else:
+    print(f"La carpeta {carpeta_destino} ya existe.")
+
 # Nombre del archivo descargado y ruta de salida
-output = 'ArchivosIgnore/data.json'
+output = 'datasets/ReviewYelp/ReviewYelp.json'
 file_path = output
 
 # Verificar si el archivo ya está descargado
@@ -761,52 +723,52 @@ except Exception as e:
     print(f"Error al procesar el archivo JSON: {e}")
 
 
-# ## Filtros de dataframe
+# #### a - Filtramos al dataframe:
 
-# In[53]:
+# In[42]:
 
 
 businessCA=pd.read_csv('Archivos/yelpCA.csv')
 businessML=pd.read_csv('Archivos/businesslistYELPML.csv')
 
 
-# In[54]:
+# In[43]:
 
 
 reviewYELP=final_df[final_df['business_id'].isin(businessCA['business_id'])]
 
 
-# In[ ]:
+# In[44]:
 
 
 reviewYELPML=final_df[final_df['business_id'].isin(businessML['business_id'])]
 
 
-# In[ ]:
+# In[45]:
 
 
 del final_df
 
 
-# ## Exportaciones
+# #### b - Exportamos los archivos:
 
-# In[ ]:
+# In[46]:
 
 
 reviewYELPML.to_csv('Archivos/ReviewsYELP_ML.csv', index=False)
 
 
-# In[ ]:
+# In[47]:
 
 
 reviewYELP.to_parquet('Archivos/ReviewYELP.parquet', engine='pyarrow')
 
 
-# # USER - YELP
+# ### 5 - Users Google YELP
 
-# ## Importacion de datos
+# Importamos la información:
 
-# In[56]:
+# In[48]:
 
 
 # ID del archivo de Google Drive
@@ -815,8 +777,19 @@ file_id = '1TT4ARRIV6i2fO1b5yb0aSUkjhxMb9u6g'
 # URL de descarga directa desde Google Drive
 url = f'https://drive.google.com/uc?id={file_id}'
 
+# Nombre de la carpeta que quieres crear
+carpeta_destino = 'datasets/UserYelp'
+
+# Verificar si la carpeta existe
+if not os.path.exists(carpeta_destino):
+    # Crear la carpeta si no existe
+    os.makedirs(carpeta_destino)
+    print(f"Se ha creado la carpeta: {carpeta_destino}")
+else:
+    print(f"La carpeta {carpeta_destino} ya existe.")
+
 # Nombre del archivo descargado
-output = 'user.parquet'
+output = 'UserYelp/UserYelp.parquet'
 
 # Verificar si el archivo ya está descargado
 if not os.path.exists(output):
@@ -841,48 +814,32 @@ else:
     print(f"El archivo '{output}' no está disponible para cargar en el DataFrame.")
 
 
-# ## Filtro ciudad elegida
+# #### a -Filtramos por ciudad elegida:
 
-# In[ ]:
+# In[49]:
 
 
 # se importa el archivo usado
 df_rev_YELP_ML=pd.read_csv('Archivos/ReviewsYELP_ML.csv')
+
 #se toman los valores de userid
 listado=df_rev_YELP_ML['user_id'].unique()
+
 #eliminar df
 del df_rev_YELP_ML
 
 
-# ## Transformación
+# ## Carga (LOAD)
 
-# In[ ]:
+# ### 1 - Archivos para ML
 
-
-# Calcular valores nulos y porcentajes
-valores_nulos = df.isnull().sum()
-# Contar las ocurrencias de cada fila duplicada
-duplicate_counts = df[df.duplicated()].sum()
-
-
-# In[ ]:
-
-
-# Escribir el DataFrame como un archivo Parquet
-filtered_reviews_ca.to_parquet('Archivos/user_ca.parquet', index=False)
-
-
-# # Carga (LOAD)
-
-# ## Archivos para Machine Learning
-
-# In[ ]:
+# In[50]:
 
 
 df_users_ML=df[df['user_id'].isin(listado)]
 
 
-# In[ ]:
+# In[51]:
 
 
 df_users_ML.drop(columns=['compliment_hot',
@@ -904,19 +861,26 @@ df_users_ML.drop_duplicates(inplace=True)
 df_users_ML.to_csv('Archivos/user_ML.csv', index=False)
 
 
-# ## Crear ETL local como script de Python
+# ## 2 - Crear ETL local como script de Python
 
-# In[57]:
+# In[ ]:
 
 
 get_ipython().system('jupyter nbconvert --to script ETL.ipynb')
 
 
-# ## GCP Bucket
+# ## 3 - Cargamos la Información a GCP Bucket
 # 
 
 # In[ ]:
 
 
-get_ipython().run_line_magic('run', 'cloud_up.py')
+get_ipython().run_line_magic('run', 'CloudFunctions/cloud_up.py')
+
+
+# In[ ]:
+
+
+# Generar el archivo requirements.txt al final del script
+get_ipython().run_line_magic('run', 'LocalFunctions/generate_requirements_file.py')
 

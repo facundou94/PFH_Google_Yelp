@@ -9,7 +9,7 @@ def subir_archivo_gcs(nombre_archivo, ruta_archivo, nombre_bucket="findeden"):
         nombre_bucket: Nombre del bucket de destino (por defecto "findeden").
     """
     try:
-        storage_client = storage.Client.from_service_account_json('ArchivosIgnore/gcp.json')
+        storage_client = storage.Client.from_service_account_json('LocalFunctions/gcp.json')
         bucket = storage_client.bucket(nombre_bucket)
         blob = bucket.blob(nombre_archivo)
 
@@ -21,4 +21,4 @@ def subir_archivo_gcs(nombre_archivo, ruta_archivo, nombre_bucket="findeden"):
         print(f"Error al subir el archivo: {e}")
 
 # Llamada a la función para subir tu archivo
-subir_archivo_gcs('metadatosCA.parquet', 'Archivos/metadatosCA.parquet')  # Asumiendo que el archivo está en el mismo directorio que el script
+subir_archivo_gcs('metadatosCA.parquet', './Archivos/metadatosCA.parquet')  # Asumiendo que el archivo está en el mismo directorio que el script
