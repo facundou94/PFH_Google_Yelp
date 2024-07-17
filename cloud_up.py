@@ -56,3 +56,10 @@ cargar_csv_a_bigquery_incremental('metadatos_ML.csv', './Archivos/metadatos_ML.c
 cargar_csv_a_bigquery_incremental('reviewsGoogle_ML.csv', './Archivos/reviewsGoogle_ML.csv')  # Asumiendo que el archivo está en el mismo directorio que el script
 cargar_csv_a_bigquery_incremental('locales_LA.csv', './Archivos/locales_LA.csv')  # Asumiendo que el archivo está en el mismo directorio que el script
 cargar_csv_a_bigquery_incremental('reviews_LA.csv', './Archivos/reviews_LA.csv')  # Asumiendo que el archivo está en el mismo directorio que el script
+
+# Archivos Inmobiliaria:
+
+cargar_csv_a_bigquery_incremental('Contratos.csv', './datasets/SQL/Contratos.csv')  # Asumiendo que el archivo está en el mismo directorio que el script
+cargar_csv_a_bigquery_incremental('Inquilinos.csv', './datasets/SQL/Inquilinos.csv')  # Asumiendo que el archivo está en el mismo directorio que el script
+cargar_csv_a_bigquery_incremental('Propiedades.csv', './datasets/SQL/Propiedades.csv')  # Asumiendo que el archivo está en el mismo directorio que el script
+cargar_csv_a_bigquery_incremental('Publicaciones_Alquileres.csv', './datasets/SQL/Publicaciones_Alquileres.csv')  # Asumiendo que el archivo está en el mismo directorio que el script
