@@ -172,3 +172,32 @@ Nuestro stack tecnológico combina potentes herramientas locales y en la nube pa
    <p align="center">
      <em>Figura: Stack Tecnológico </em>
    </p>
+
+
+### Esquema General del ETL Local:
+
+1. **Extracción (Extract):**
+
+   - **Datos de locales:** Se obtienen datos de locales desde archivos JSON alojados en Google Drive. Estos archivos contienen información sobre direcciones, coordenadas geográficas, categorías, valoraciones promedio, número de reseñas, y horarios de atención.
+
+   - **Reseñas de Google:** Se descargan reseñas de Google desde archivos JSON en Google Drive. Estos archivos incluyen datos sobre los usuarios, las fechas de las reseñas, las valoraciones y los identificadores de los locales (gmap\_id).
+
+2. **Transformación (Transform):**
+
+   - **Limpieza de datos:** Se eliminan duplicados, se corrigen formatos, y se extraen datos relevantes como ciudades a partir de direcciones.
+
+   - **Categorización:** Se crean nuevas categorías generales para los locales (por ejemplo, "Comida", "Entretenimiento", "Salud") y subcategorías más específicas.
+
+   - **Cálculo de métricas:** Se calculan métricas como horas de apertura diurnas y nocturnas, frecuencia de categorías, y valoraciones ponderadas de usuarios.
+
+   - **Filtrado:** Se seleccionan los locales y reseñas relevantes para el análisis, descartando aquellos que no aportan información útil.
+
+   - **Preparación para Machine Learning:** Se crean conjuntos de datos finales que incluyen información sobre locales, reseñas y usuarios, listos para ser utilizados en modelos de aprendizaje automático.
+
+3. **Carga (Load):**
+
+   - **Almacenamiento local:** Los datos procesados se guardan en archivos CSV localmente.
+
+   - **Carga en MySQL:** Se utiliza un script para cargar los datos de forma incremental en una base de datos MySQL, creando tablas si es necesario y evitando la duplicación de datos.
+
+   - **Carga en Google BigQuery:** Opcionalmente, los datos también pueden cargarse en Google BigQuery, un servicio de almacenamiento de datos en la nube de Google Cloud Platform.
