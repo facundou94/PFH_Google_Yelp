@@ -174,7 +174,7 @@ Nuestro stack tecnológico combina potentes herramientas locales y en la nube pa
    </p>
 
 
-### Esquema General del ETL Local:
+## Esquema General del ETL Local:
 
 1. **Extracción (Extract):**
 
@@ -201,3 +201,35 @@ Nuestro stack tecnológico combina potentes herramientas locales y en la nube pa
    - **Carga en MySQL:** Se utiliza un script para cargar los datos de forma incremental en una base de datos MySQL, creando tablas si es necesario y evitando la duplicación de datos.
 
    - **Carga en Google BigQuery:** Opcionalmente, los datos también pueden cargarse en Google BigQuery, un servicio de almacenamiento de datos en la nube de Google Cloud Platform.
+
+## WorkFlow 
+   El ETL sigue un flujo de trabajo claro, utilizando diversas tecnologías para lograr su objetivo:
+
+1. **Extracción:**
+   - **Google Drive:** Se emplea la librería `gdown` para descargar los archivos JSON que contienen los datos de locales y reseñas desde Google Drive.
+   - **Pandas:** Los datos JSON se cargan en DataFrames de Pandas para su posterior manipulación y análisis.
+
+2. **Transformación:**
+   - **Pandas:** Se realizan diversas operaciones de limpieza, filtrado, transformación y agregación de datos utilizando las funciones y métodos de Pandas.
+   - **Expresiones Regulares (Regex):** Se utilizan expresiones regulares para extraer información específica de las cadenas de texto, como ciudades a partir de direcciones.
+   - **NumPy:** Se emplea NumPy para realizar cálculos numéricos y manipular arreglos de datos.
+   - **Matplotlib:** Se utiliza para generar un histograma que visualiza la distribución de la cantidad de reseñas por usuario.
+
+3. **Carga:**
+   - **CSV:** Los datos transformados se guardan en archivos CSV localmente para su posterior uso.
+   - **MySQL:** Se utiliza la librería `sqlalchemy` para establecer una conexión con una base de datos MySQL y cargar los datos de forma incremental.
+   - **Google Cloud Platform (GCP) BigQuery:** Opcionalmente, se puede utilizar un script adicional (`cloud_up.py`) para cargar los datos a BigQuery, un servicio de almacenamiento de datos en la nube de GCP.
+
+**Tecnologías Clave:**
+
+* **Python:** Lenguaje de programación principal utilizado para todo el proceso ETL.
+* **Pandas:** Librería fundamental para la manipulación y análisis de datos.
+* **gdown:** Librería para descargar archivos desde Google Drive.
+* **sqlalchemy:** Librería para interactuar con bases de datos SQL.
+* **MySQL:** Sistema de gestión de bases de datos relacionales.
+* **Google Cloud Platform (GCP) BigQuery:** Servicio de almacenamiento de datos en la nube (opcional).
+* **Expresiones Regulares (Regex):** Para la extracción de patrones en texto.
+* **NumPy:** Para el cálculo numérico y manejo de arreglos.
+* **Matplotlib:** Para la visualización de datos.
+
+Este flujo de trabajo permite obtener datos de Google Drive, transformarlos para su análisis y cargarlos en diferentes destinos, tanto locales como en la nube, para su posterior uso en modelos de machine learning.

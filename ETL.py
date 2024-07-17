@@ -5,7 +5,7 @@
 
 # # Función para instalar/actualizar paquetes
 
-# In[12]:
+# In[75]:
 
 
 # Ejecutar el comando para instalar/actualizar paquetes
@@ -14,7 +14,7 @@ get_ipython().system('pip install -r requirements.txt')
 
 # # Importación Librerías
 
-# In[13]:
+# In[76]:
 
 
 import pandas as pd
@@ -39,7 +39,7 @@ import mysql.connector
 
 # Presentamos estos datos de una inmobiliaria cuyo caso de implementación del sistema FindEden fué un éxito.
 
-# In[14]:
+# In[77]:
 
 
 get_ipython().run_line_magic('run', 'Archivos_Inmobiliaria/script_sql_genera_csv.py')
@@ -49,7 +49,7 @@ get_ipython().run_line_magic('run', 'Archivos_Inmobiliaria/script_sql_genera_csv
 
 # ### 1 - Metadata - Google
 
-# In[15]:
+# In[78]:
 
 
 # IDs de los archivos de Google Drive
@@ -119,14 +119,14 @@ del dataframes
 
 # Este código combina varios DataFrames, filtra los datos por el estado de California y luego limpia el DataFrame resultante para que tenga un índice continuo y no tenga la columna de índice antigua.
 
-# In[16]:
+# In[79]:
 
 
 # Eliminar duplicados basados en la columna 'gmap_id'
 df_metadatosCA.drop_duplicates(subset=['gmap_id'], inplace=True)
 
 
-# In[17]:
+# In[80]:
 
 
 # Filtrar por el estado de California (CA)
@@ -144,7 +144,7 @@ df_metadatosCA.drop('index', axis='columns', inplace=True)
 # 
 # Este código toma un DataFrame con direcciones y crea una nueva columna que contiene los nombres de las ciudades extraídas. Se basa en una expresión regular para identificar y extraer el nombre de la ciudad según un formato de dirección común.
 
-# In[18]:
+# In[81]:
 
 
 # Función para extraer la ciudad y colocarla en una nueva columna
@@ -166,7 +166,7 @@ df_metadatosCA['city'] = df_metadatosCA['address'].apply(extract_city)
 # 
 # 
 
-# In[19]:
+# In[82]:
 
 
 # Función para asegurarse de que el tiempo esté en el formato "HH:MMAM/PM"
@@ -187,7 +187,7 @@ def ensure_time_format(time_str):
     return None
 
 
-# In[20]:
+# In[83]:
 
 
 # Función para calcular las horas diurnas (8 AM - 10 PM)
@@ -220,7 +220,7 @@ def calculate_day_hours(hours_array):
     return total_day_hours
 
 
-# In[21]:
+# In[84]:
 
 
 # Función para calcular las horas nocturnas (10 PM - 8 AM)
@@ -254,7 +254,7 @@ def calculate_night_hours(hours_array):
     return total_night_hours
 
 
-# In[22]:
+# In[85]:
 
 
 # Aplicar las funciones al DataFrame
@@ -266,7 +266,7 @@ df_metadatosCA['Hours_night'] = df_metadatosCA['hours'].apply(calculate_night_ho
 
 # Este código de Python está diseñado para analizar las categorías de negocios en un DataFrame llamado df_metadatosCA y contar cuántas veces aparece cada categoría. 
 
-# In[23]:
+# In[86]:
 
 
 # Expandir las listas en filas individuales
@@ -282,14 +282,14 @@ conteo_categorias.columns = ['Categoria', 'Frecuencia']
 print(conteo_categorias)
 
 
-# In[24]:
+# In[87]:
 
 
 num_categorias = len(conteo_categorias)
 print(f"La Serie tiene {num_categorias} categorías únicas.")
 
 
-# In[25]:
+# In[88]:
 
 
 # Eliminar la serie que ya no se usa
@@ -300,7 +300,7 @@ del categorias_expandidas
 
 #  Este código de Python está diseñado para tomar un DataFrame llamado df_metadatosCA que tiene una columna llamada 'MISC' que contiene diccionarios, y expandir esos diccionarios en nuevas columnas en el DataFrame.
 
-# In[26]:
+# In[89]:
 
 
 # Función para extraer y expandir los diccionarios en nuevas columnas
@@ -335,21 +335,21 @@ del expanded_df
 # 
 # Este código parece ser un paso inicial para preparar los datos para un modelo de Machine Learning. Al filtrar las reseñas de los negocios que te interesan, estás creando un conjunto de datos específico que puedes usar para entrenar un modelo que prediga algo relacionado con las reseñas, como la calificación promedio de un negocio o la probabilidad de que un usuario deje una reseña positiva.
 
-# In[27]:
+# In[90]:
 
 
 # Elegir ciudad
 ciudadelegida='Los Angeles'
 
 
-# In[28]:
+# In[91]:
 
 
 #filtro el listado
 negocios=df_metadatosCA['gmap_id'][df_metadatosCA['city'] == ciudadelegida]
 
 
-# In[29]:
+# In[92]:
 
 
 #filtro por los negocios de la ciudad
@@ -364,7 +364,7 @@ metadatos_ML.to_csv('Archivos/metadatos_ML.csv', index=False)
 
 # ### 2 - Reviews Estados - Google
 
-# In[30]:
+# In[93]:
 
 
 # IDs de los archivos de Google Drive
@@ -444,7 +444,7 @@ df_reviewsGoogle = pd.concat(dataframes, ignore_index=True)
 
 #  Este código elimina las filas duplicadas del DataFrame df_reviewsGoogle solo si las filas tienen los mismos valores en las columnas 'user_id', 'time' y 'gmap_id'. Esto es útil para asegurar que cada combinación única de estas tres columnas represente una reseña única.
 
-# In[31]:
+# In[94]:
 
 
 df_reviewsGoogle.drop_duplicates(subset=['user_id', 'time', 'gmap_id'], inplace=True)
@@ -454,7 +454,7 @@ df_reviewsGoogle.drop_duplicates(subset=['user_id', 'time', 'gmap_id'], inplace=
 
 # Este código crea una nueva columna 'has_text' en el DataFrame df_reviewsGoogle. Esta columna tendrá un valor de 1 si la columna 'text' contiene texto real (no está vacía o solo espacios en blanco) y 0 si no contiene texto real.
 
-# In[32]:
+# In[95]:
 
 
 # Si contiene texto
@@ -463,7 +463,7 @@ df_reviewsGoogle['has_text'] = df_reviewsGoogle['text'].apply(lambda x: 1 if isi
 
 # Este código crea una nueva columna 'num_pics' en el DataFrame df_reviewsGoogle. Esta columna tendrá un valor que representa la cantidad de elementos en la lista que se encuentra en la columna 'pics' para cada fila. Si la columna 'pics' no contiene una lista, la columna 'num_pics' tendrá un valor de 0.
 
-# In[33]:
+# In[96]:
 
 
 # Cantidad de fotos
@@ -472,7 +472,7 @@ df_reviewsGoogle['num_pics'] = df_reviewsGoogle['pics'].apply(lambda x: len(x) i
 
 # Este código crea una nueva columna 'has_resp' en el DataFrame df_reviewsGoogle. Esta columna tendrá un valor de 1 si la columna 'resp' contiene un diccionario no vacío y 0 si no lo contiene.
 
-# In[34]:
+# In[97]:
 
 
 # Si tiene respuesta
@@ -481,14 +481,14 @@ df_reviewsGoogle['has_resp'] = df_reviewsGoogle['resp'].apply(lambda x: 1 if isi
 
 # #### c - Machine Learning
 
-# In[35]:
+# In[98]:
 
 
 #filtro por los negocios de la ciudad
 df_reviewsGoogle_ML = df_reviewsGoogle[df_reviewsGoogle['gmap_id'].isin(negocios)][['user_id', 'time', 'rating', 'gmap_id']]
 
 
-# In[36]:
+# In[99]:
 
 
 #esportar a un csv
@@ -497,7 +497,7 @@ df_reviewsGoogle_ML.to_csv('Archivos/reviewsGoogle_ML.csv', index=False)
 
 # ### 3 - Archivos para ML
 
-# In[37]:
+# In[100]:
 
 
 # Carga archivos
@@ -525,7 +525,7 @@ df_reviewsGoogle = pd.read_csv("Archivos/reviewsGoogle_ML.csv") # 154586 reviews
 #     - Buildings
 #     
 
-# In[38]:
+# In[101]:
 
 
 def generalize_category(category):
@@ -588,13 +588,13 @@ df_metadatos['general_category'] = df_metadatos['category'].apply(generalize_cat
 
 # Contabilizamos la Frecuencia absoluta de las categorías:
 
-# In[39]:
+# In[102]:
 
 
 df_metadatos["general_category"].value_counts()
 
 
-# In[40]:
+# In[103]:
 
 
 # Filtrar el DataFrame donde general_category es igual a "Other"
@@ -636,7 +636,7 @@ category_counts.head(10)
 #                - Gimnasios y centros de actividad física
 #                - Farmacias
 
-# In[41]:
+# In[104]:
 
 
 # Funciones para seleccionar categorías de restaurants
@@ -695,7 +695,7 @@ def categorize_res_vegan(categories):
     return 0
 
 
-# In[42]:
+# In[105]:
 
 
 # Aplicar la función a cada fila
@@ -706,7 +706,7 @@ df_metadatos["res_fast"] = df_metadatos["category"].apply(categorize_res_fast)
 df_metadatos["res_vegan"] = df_metadatos["category"].apply(categorize_res_vegan)
 
 
-# In[43]:
+# In[106]:
 
 
 # Funciones para seleccionar categorías de religion
@@ -739,14 +739,14 @@ def categorize_rel(categories):
     return 0
 
 
-# In[44]:
+# In[107]:
 
 
 # Aplicar la función a cada fila
 df_metadatos["religion"] = df_metadatos["category"].apply(categorize_rel)
 
 
-# In[45]:
+# In[108]:
 
 
 # Funciones para seleccionar categorías de recreacion
@@ -773,14 +773,14 @@ def categorize_rec(categories):
     return 0
 
 
-# In[46]:
+# In[109]:
 
 
 # Aplicar la función a cada fila
 df_metadatos["recreation"] = df_metadatos["category"].apply(categorize_rec)
 
 
-# In[47]:
+# In[110]:
 
 
 # Funciones para seleccionar categorías de bienestar
@@ -797,14 +797,14 @@ def categorize_bien(categories):
     return 0
 
 
-# In[48]:
+# In[111]:
 
 
 # Aplicar la función a cada fila
 df_metadatos["bienestar"] = df_metadatos["category"].apply(categorize_bien)
 
 
-# In[49]:
+# In[112]:
 
 
 # Mostrar las primeras filas del DataFrame
@@ -813,7 +813,7 @@ df_metadatos["recreation"].value_counts()
 
 # #### 3. Filtrado de locales que aporten información al algoritmo y chequeo con otras fuentes
 
-# In[50]:
+# In[113]:
 
 
 # Lista de columnas a verificar
@@ -823,13 +823,13 @@ columns_to_check = ['res_asian', 'res_euro', 'res_latin', 'res_fast', 'res_vegan
 df_metadatos_filtered = df_metadatos[df_metadatos[columns_to_check].any(axis=1)]
 
 
-# In[51]:
+# In[114]:
 
 
 df_metadatos_filtered.info() # De 18776 a 2814
 
 
-# In[52]:
+# In[115]:
 
 
 # Obtener los "gmap_id" únicos de df_metadatos_filtered
@@ -839,13 +839,13 @@ gmap_ids_filtered = df_metadatos_filtered['gmap_id'].unique()
 df_reviewsGoogle_filtered = df_reviewsGoogle[df_reviewsGoogle['gmap_id'].isin(gmap_ids_filtered)]
 
 
-# In[53]:
+# In[116]:
 
 
 df_reviewsGoogle_filtered.info() # De 154586 a 52407
 
 
-# In[54]:
+# In[117]:
 
 
 df_reviewsGoogle_filtered['date'] = pd.to_datetime(df_reviewsGoogle['time'], unit='ms')
@@ -853,7 +853,7 @@ df_reviewsGoogle_filtered['date'] = pd.to_datetime(df_reviewsGoogle['time'], uni
 
 # #### 3. Tratamiento de usuarios
 
-# In[55]:
+# In[118]:
 
 
 # Contar la cantidad de reseñas por user_id
@@ -883,7 +883,7 @@ plt.legend(handles, custom_labels, title="Cantidad de Reseñas")
 plt.show()
 
 
-# In[56]:
+# In[119]:
 
 
 # Merge para añadir avg_rating al df_reviewsGoogle
@@ -920,7 +920,7 @@ df_user_stats_filtered = df_user_stats_filtered.merge(user_category_pivot, on='u
 
 
 
-# In[57]:
+# In[120]:
 
 
 # Calcular la media de dif_rating en valor absoluto por usuario
@@ -931,7 +931,7 @@ user_avg_dif_modulo.columns = ['user_id', 'avg_dif_modulo']
 df_user_stats_filtered = df_user_stats_filtered.merge(user_avg_dif_modulo, on='user_id', how='left')
 
 
-# In[58]:
+# In[121]:
 
 
 # Definir la lista de categorías
@@ -945,7 +945,7 @@ df_user_stats_filtered['sum_category'] = df_user_stats_filtered[categories].appl
 df_user_stats_filtered = df_user_stats_filtered.drop(columns=categories)
 
 
-# In[59]:
+# In[122]:
 
 
 # Calcular máximo y mínimo de cada columna en df_user_stats_filtered
@@ -958,13 +958,13 @@ print("\nValores mínimos:")
 print(min_values)
 
 
-# In[60]:
+# In[123]:
 
 
 df_user_stats_filtered["reviews_count"].value_counts()
 
 
-# In[61]:
+# In[124]:
 
 
 # Definir las condiciones y las puntuaciones correspondientes
@@ -992,7 +992,7 @@ choices = [5, 4, 3, 2]
 df_user_stats_filtered['user_rating'] = np.select(conditions, choices, default=1)
 
 
-# In[62]:
+# In[125]:
 
 
 df_user_stats_filtered["user_rating"].value_counts()
@@ -1000,7 +1000,7 @@ df_user_stats_filtered["user_rating"].value_counts()
 
 # #### 4. Creación de base de datos final de locales con usuarios ponderados
 
-# In[63]:
+# In[126]:
 
 
 # Realizar el merge para añadir user_rating a df_reviewsGoogle_filtered
@@ -1013,13 +1013,13 @@ df_reviewsGoogle_filtered['user_rating'].fillna(1, inplace=True)
 df_reviewsGoogle_filtered['user_rating'] = df_reviewsGoogle_filtered['user_rating'].astype(int)
 
 
-# In[64]:
+# In[127]:
 
 
 df_reviewsGoogle_filtered["user_rating"].value_counts()
 
 
-# In[65]:
+# In[128]:
 
 
 # Paso 2: Calcular la suma ponderada de ratings y la suma ponderada de las ponderaciones por gmap_id
@@ -1039,13 +1039,13 @@ grouped['avg_rating_correction'] = grouped['total_weighted_rating'] / grouped['t
 df_metadatos_filtered = df_metadatos_filtered.merge(grouped[['gmap_id', 'avg_rating_correction']], on='gmap_id', how='left')
 
 
-# In[66]:
+# In[129]:
 
 
 df_metadatos_filtered.info()
 
 
-# In[67]:
+# In[130]:
 
 
 # Contar los gmap_id únicos en cada DataFrame
@@ -1075,7 +1075,7 @@ print(f"gmap_id faltantes en df_reviewsGoogle_filtered: {count_gmap_ids_missing_
 print(f"gmap_id faltantes en df_metadatos_filtered: {count_gmap_ids_missing_in_metadatos}")
 
 
-# In[68]:
+# In[131]:
 
 
 df_metadatos_filtered[["avg_rating","avg_rating_correction"]].head()
@@ -1083,7 +1083,7 @@ df_metadatos_filtered[["avg_rating","avg_rating_correction"]].head()
 
 # CARGA EN REPOSITORIO LOCAL:
 
-# In[69]:
+# In[132]:
 
 
 # Guardar df_metadatos_filtered como un archivo CSV
@@ -1101,7 +1101,7 @@ df_reviewsGoogle_filtered.to_csv('Archivos/reviews_LA.csv', index=False)
 
 # 1 - Script para crear tablas si no existen (crear_tablas.py):
 
-# In[70]:
+# In[133]:
 
 
 get_ipython().run_line_magic('run', 'crear_tablas.py')
@@ -1109,7 +1109,7 @@ get_ipython().run_line_magic('run', 'crear_tablas.py')
 
 # 2 - Script para carga incremental (cargar_incremental.py):
 
-# In[71]:
+# In[134]:
 
 
 get_ipython().run_line_magic('run', 'cargar_incremental.py')
@@ -1117,7 +1117,7 @@ get_ipython().run_line_magic('run', 'cargar_incremental.py')
 
 # ## 1 - Crear ETL local como script de Python
 
-# In[72]:
+# In[135]:
 
 
 get_ipython().system('jupyter nbconvert --to script ETL.ipynb')
