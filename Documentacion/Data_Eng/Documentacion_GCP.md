@@ -6,15 +6,15 @@ En Google Cloud Platform (GCP), un bucket es un contenedor fundamental de almace
 
 Para hacerlo, primeramente debemos crear un nuevo proyecto en el cual trabajar o en caso contrario seleccionar el que deseamos:
 
-![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/1.png)
+![NO SE PUEDE MOSTRAR](../../Imagenes/Docs_cloud_img/1.png)
 
 Luego, seleccionamos en el menú desplegable de la izquierda la opción Cloud Storage, y luego Buckets:
 
-![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/2.png)
+![NO SE PUEDE MOSTRAR](../../Imagenes/Docs_cloud_img/2.png)
 
 Nos daremos cuenta que no tendremos ningún Bocket (1) y por ende vamos a crear uno (2):
 
-![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/3.png)
+![NO SE PUEDE MOSTRAR](../../Imagenes/Docs_cloud_img/3.png)
 
 Luego de crearlo debemos colocar un nombre, que será único en toda la plataforma y damos siguiente sin agregar etiquetas. 
 
@@ -26,7 +26,7 @@ En acceso a los objetos dejamos en estándar impidiendo que quede abierto al pú
 
 De esta manera deberíamos ver la interfaz de Buckets:
 
-![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/4.png)
+![NO SE PUEDE MOSTRAR](../../Imagenes/Docs_cloud_img/4.png)
 
 Ahora, para cargar los datos desde nuestra PC debemos usar un script de Python que cargue los datos a través de una llave de acceso que se mostrará ahora como crear.
 
@@ -34,29 +34,29 @@ Ahora, para cargar los datos desde nuestra PC debemos usar un script de Python q
 
 Vamos a la barra lateral izquierda nuevamente y seleccionamos IAM y Administración, luego cuentas de servicio:
 
-![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/5.png)
+![NO SE PUEDE MOSTRAR](../../Imagenes/Docs_cloud_img/5.png)
 
 Ahora le damos en CREAR CUENTA DE SERVICIO:
 
-![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/6.png)
+![NO SE PUEDE MOSTRAR](../../Imagenes/Docs_cloud_img/6.png)
 
 Cargamos los detalles de la cuenta de servicio:
 
-![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/7.png)
+![NO SE PUEDE MOSTRAR](../../Imagenes/Docs_cloud_img/7.png)
 
 En rol seleccionamos Básco y luego Propietario. Damos continuar:
 
-![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/8.png)
+![NO SE PUEDE MOSTRAR](../../Imagenes/Docs_cloud_img/8.png)
 
 La última opción la dejamos en blanco y damos LISTO.
 
 En el menú desplegable de la derecha del Permiso seleccionamos Administrar Claves:
 
-![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/9.png)
+![NO SE PUEDE MOSTRAR](../../Imagenes/Docs_cloud_img/9.png)
 
 En la pestaña AGREGAR CLAVE le damos en Crear clave Nueva, en el cuadro de diálogo nos pedirá el formato, seleccionamos JSON. Luego lo nombramos y descargamos en un lugar seguro, ya que con ella cualquier persona podría hacer cambios de propietario en la Base de datos. Nos saldrá el mensaje de creación y descarga exitosa de la clave, luego seguimos con la carga de datos al Bocket.
 
-![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/11.png)
+![NO SE PUEDE MOSTRAR](../../Imagenes/Docs_cloud_img/11.png)
 
 ### Carga de datos al Bucket desde la PC usando Python y VSC
 
@@ -102,11 +102,11 @@ Vamos nuevamente a IAM y Administración, seleccionamos IAM, vamos a OTORGAR ACC
 
 Luego completamos la casilla de "Principales nuevas" con el correo de la persona a la que queremos habilitar y seleccionamos rol Administrador de objetos de Storage
 
-![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/13.png)
+![NO SE PUEDE MOSTRAR](../../Imagenes/Docs_cloud_img/13.png)
 
 Lo siguiente es corroborar que el permiso esta presente en el panel de IAM:
 
-![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/12.png)
+![NO SE PUEDE MOSTRAR](../../Imagenes/Docs_cloud_img/12.png)
 
 Por último debemos enviar la direccion del Bucket a la persona a la que concedimos el permiso.
 
@@ -143,23 +143,23 @@ También puedes encontrar tutoriales y ejemplos en línea para aprender a utiliz
 
 Primeramente buscamos en el menú desplegable de GCP a BigQuery y luego BigQuery Studio:
 
-![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/14.png)
+![NO SE PUEDE MOSTRAR](../../Imagenes/Docs_cloud_img/14.png)
 
 Luego damos a AGREGAR, seleccionamos la opción que nos dice Google Cloud Storage:
 
-![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/15.png)
+![NO SE PUEDE MOSTRAR](../../Imagenes/Docs_cloud_img/15.png)
 
 En la segunda opción le damos a EXPLORAR y seleccionamos el Buket de origen de nuestros datos como en las siguientes imagenes:
 
-![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/16.png)
+![NO SE PUEDE MOSTRAR](../../Imagenes/Docs_cloud_img/16.png)
 
-![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/17.png)
+![NO SE PUEDE MOSTRAR](../../Imagenes/Docs_cloud_img/17.png)
 
 Debemos seleccionar la tabla con la que queremos trabajar en el caso de que sean más de una.
 
 Luego procedemos a dar nombre al conjunto de datos y luego a la tabla, estos nombres se deben crear como nuevo conjunto solo agregando el nombre y dejando tal cual la configuración regional:
 
-![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/18.png)
+![NO SE PUEDE MOSTRAR](../../Imagenes/Docs_cloud_img/18.png)
 
 En el caso de que los datos no debieran ser particionados le daríamos CREAR TABLA sin ninguna otra configuración. Por lo general el particionamiento en clustere es para mejorar la performance de consultas en grandes conjuntos de datos, a fines Didácticos realizaremos dicha clusterización.
 
@@ -191,6 +191,6 @@ Al seleccionar la obligatoriedad de consultas con where nos permite ubicar más 
 
 Por ultimo damos CREAR TABLA:
 
-![NO SE PUEDE MOSTRAR](Imagenes/Docs_cloud_img/19.png)
+![NO SE PUEDE MOSTRAR](../../Imagenes/Docs_cloud_img/19.png)
 
 
