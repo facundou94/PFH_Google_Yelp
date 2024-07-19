@@ -1,5 +1,9 @@
 <h1 align="center"> PROYECTO FINAL HENRY: GOOGLE - YELP  </h1>
-<h3 align="center"> Equipo de trabajo: Camino Federico, Londero Walter, Pizarro Hernan, Urteaga Facundo, Veron Cintia </h3>
+
+### Equipo de trabajo 👨‍💻👩‍💻
+
+Camino Federico | Londero Walter | Pizarro Hernan | Urteaga Facundo | Veron Cintia
+:---:|:---:|:---:|:---:|:---:
 
    <p align="center">
    <img src='Imagenes/1_logo.JPG' width='400'>
@@ -17,7 +21,12 @@
   <img src="https://img.shields.io/badge/NumPy-1.x-brightgreen">
   <img src="https://img.shields.io/badge/Google_Cloud_BigQuery-1.x-yellow">
   <img src="https://img.shields.io/badge/Power_BI-2.x-orange">
+  <img src="https://img.shields.io/badge/Google_Cloud_App_Engine-1.x-blue"> 
+  <img src="https://img.shields.io/badge/GitHub-2.x-lightgrey">
+  <img src="https://img.shields.io/badge/Regex-1.x-orange">
+  <img src="https://img.shields.io/badge/Notion-2.x-purple">
 </p>
+
 
 # Índice
 
