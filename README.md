@@ -271,3 +271,20 @@ Este proyecto se basa en un robusto conjunto de tecnologías que abarcan desde l
 * **Matplotlib:** Para la visualización de datos.
 
 Este flujo de trabajo permite obtener datos de Google Drive, transformarlos para su análisis y cargarlos en diferentes destinos, tanto locales como en la nube, para su posterior uso en modelos de machine learning.
+
+## Dashboard 
+</p>
+En el competitivo mundo de la gestión inmobiliaria, la capacidad para tomar decisiones basadas en datos precisos y actualizados es esencial. Con el objetivo de optimizar la gestión de propiedades y mejorar la rentabilidad, FindEdén® ha desarrollado un avanzado dashboard interactivo que proporciona una visión integral y detallada del rendimiento de su portafolio inmobiliario.
+
+Este dashboard está diseñado para ofrecer una visualización clara y concisa de los KPIs más relevantes, como las tasas de ocupación, los tiempos de vacancia, y la satisfacción de los inquilinos. Mediante una interfaz intuitiva, los usuarios pueden monitorear en tiempo real el estado de sus propiedades, identificar tendencias emergentes, y tomar decisiones informadas con rapidez.
+
+FindEdén® transforma datos complejos en insights valiosos, permitiendo una gestión eficiente y estratégica de propiedades. Con este dashboard, las inmobiliarias pueden mejorar sus estrategias de marketing, optimizar la ocupación y renovación de contratos, y comunicar resultados con claridad a stakeholders e inversionistas.
+
+<p align="justify">
+
+   <p align="center">
+   <img src='Imagenes/dash_img1' width='400'>
+   </p>
+   <p align="center">
+     <em>Figura: Dashboard </em>
+   </p>
