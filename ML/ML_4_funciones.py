@@ -10,6 +10,34 @@ import math
 #
 #
 def generate_user_preferences(res_w, res_sc, rel_w, rel_sc, rec_w, rec_sc, ct):
+
+    """
+    Genera las preferencias de usuario basadas en los pesos y subcategorías proporcionadas.
+
+    Args:
+        res_w (int): Peso para la categoría 'Restaurant'. Debe ser uno de [0, 1, 2, 3].
+        res_sc (int): Subcategoría para 'Restaurant'. Debe ser uno de [0, 1, 2, 3, 4, 5].
+        rel_w (int): Peso para la categoría 'Religion'. Debe ser uno de [0, 1, 2, 3].
+        rel_sc (int): Subcategoría para 'Religion'. Debe ser uno de [0, 1, 2, 3, 4, 5].
+        rec_w (int): Peso para la categoría 'Recreation'. Debe ser uno de [0, 1, 2, 3].
+        rec_sc (int): Subcategoría para 'Recreation'. Debe ser uno de [0, 1, 2, 3].
+        ct (int): Cronotipo del usuario. Debe ser uno de [0, 1].
+
+    Returns:
+        dict: Diccionario que contiene las preferencias del usuario para cada categoría y subcategoría.
+    
+    Raises:
+        ValueError: Si alguno de los argumentos proporcionados no es válido.
+
+    Ejemplo:
+        user_prefs = generate_user_preferences(2, 1, 3, 0, 1, 2, 0)
+        print(user_prefs)
+        # Output: {'Restaurant': {'weight': 2, 'sub_category': 1},
+        #          'Religion': {'weight': 3, 'sub_category': 0},
+        #          'Recreation': {'weight': 1, 'sub_category': 2},
+        #          'Cronotipo': 0}
+    """
+
     # Definir los pesos y subcategorías
     weights = [0, 1, 2, 3]
     restaurant_subcategories = [0, 1, 2, 3, 4, 5]
@@ -55,6 +83,25 @@ def generate_user_preferences(res_w, res_sc, rel_w, rel_sc, rec_w, rec_sc, ct):
 #
 #
 def group_coordinates(*coords):
+
+    """
+    Agrupa coordenadas en listas separadas de latitudes y longitudes.
+
+    Args:
+        *coords: Una secuencia de números representando las coordenadas, alternando entre latitudes y longitudes.
+
+    Returns:
+        tuple: Dos listas, la primera contiene las latitudes y la segunda contiene las longitudes.
+    
+    Raises:
+        ValueError: Si el número de coordenadas no es par.
+
+    Ejemplo:
+        latitudes, longitudes = group_coordinates(34.05, -118.25, 40.71, -74.01)
+        print(latitudes)  # Output: [34.05, 40.71]
+        print(longitudes) # Output: [-118.25, -74.01]
+    """
+
     lat_inm = []
     lon_inm = []
 
@@ -67,6 +114,30 @@ def group_coordinates(*coords):
 #
 #
 def filtrar_locales(df_locales, lat_inm, lon_inm, km, user_pref):
+
+    """
+    Filtra locales en función de la ubicación y las preferencias del usuario.
+
+    Args:
+        df_locales (pd.DataFrame): DataFrame que contiene información sobre los locales.
+        lat_inm (float): Latitud de la ubicación del inmueble.
+        lon_inm (float): Longitud de la ubicación del inmueble.
+        km (float): Radio en kilómetros para filtrar locales alrededor del inmueble.
+        user_pref (dict): Diccionario con las preferencias del usuario. Debe contener
+                          las categorías 'Restaurant', 'Religion', 'Recreation' con
+                          sus respectivos 'weight' y 'sub_category'.
+
+    Returns:
+        pd.DataFrame: DataFrame filtrado que contiene solo los locales de interés según
+                      la ubicación y las preferencias del usuario.
+
+    Raises:
+        ValueError: Si algún valor de las preferencias del usuario no es válido.
+
+    Ejemplo:
+        df_locales_filtrados = filtrar_locales(df_locales, 34.05, -118.25, 5, user_pref)
+        print(df_locales_filtrados.head())
+    """
     
     df_locales_copy = df_locales.copy()
 
@@ -187,6 +258,24 @@ def filtrar_locales(df_locales, lat_inm, lon_inm, km, user_pref):
 #
 #
 def calcular_distancia(lat_1, long_1, lat_2, long_2):
+
+    """
+    Calcula la distancia en metros entre dos puntos geográficos especificados por sus latitudes y longitudes.
+
+    Args:
+        lat_1 (float): Latitud del primer punto.
+        long_1 (float): Longitud del primer punto.
+        lat_2 (float): Latitud del segundo punto.
+        long_2 (float): Longitud del segundo punto.
+
+    Returns:
+        float: Distancia en metros entre los dos puntos, redondeada a la centena más cercana.
+
+    Ejemplo:
+        distancia = calcular_distancia(34.05, -118.25, 36.16, -115.15)
+        print(distancia)  # Output: 360000.0 (por ejemplo)
+    """
+
     # Constantes para convertir grados a metros
     METROS_POR_GRADO_LAT = 111320  # Aprox. para todas las latitudes
     METROS_POR_GRADO_LONG = 111320 * math.cos(math.radians(lat_1))  # Varía según la latitud
@@ -210,6 +299,28 @@ def calcular_distancia(lat_1, long_1, lat_2, long_2):
 #
 #
 def calcular_puntuacion(df_prueba, user_pref):
+
+    """
+    Calcula el puntaje total de una zona basada en las preferencias del usuario y las características de los locales en la zona.
+
+    Args:
+        df_prueba (pd.DataFrame): DataFrame con los datos de los locales en la zona.
+        user_pref (dict): Diccionario con las preferencias del usuario, incluyendo pesos y subcategorías para "Restaurant", "Religion" y "Recreation".
+
+    Returns:
+        tuple: Contiene el puntaje total, los puntajes individuales para restaurantes, religión, recreación y bienestar, y una lista de mensajes con la información de los mejores locales encontrados.
+
+    Ejemplo:
+        user_pref = {
+            'Restaurant': {'weight': 3, 'sub_category': 1},
+            'Religion': {'weight': 2, 'sub_category': 1},
+            'Recreation': {'weight': 1, 'sub_category': 1}
+        }
+        total_score, score_res, score_rel, score_rec, score_bien, messages = calcular_puntuacion(df_prueba, user_pref)
+        print(total_score)  # Output: 8.6 (por ejemplo)
+        print(messages)     # Output: ["Tienes un restaurante llamado 'Best Restaurant' a 100 metros con una valoración histórica de 4.8 y una predicción de 4.9 dentro de tres meses"]
+    """
+
     total_score = 0
     score_res = 0
     score_rel = 0
@@ -420,6 +531,35 @@ def calcular_puntuacion(df_prueba, user_pref):
 #
 #
 def obtener_recomendacion(df_base_datos, user_pref, km, lat_inm, lon_inm):
+
+    """
+    Genera recomendaciones de inmuebles basadas en las preferencias del usuario y la proximidad a locales de interés.
+
+    Args:
+        df_base_datos (pd.DataFrame): DataFrame con los datos de los locales.
+        user_pref (dict): Diccionario con las preferencias del usuario, incluyendo pesos y subcategorías para "Restaurant", "Religion" y "Recreation".
+        km (float): Radio en kilómetros para buscar locales alrededor de las coordenadas de los inmuebles.
+        lat_inm (list): Lista de latitudes de los inmuebles.
+        lon_inm (list): Lista de longitudes de los inmuebles.
+
+    Returns:
+        tuple: Contiene un DataFrame con los resultados de las recomendaciones para cada inmueble y un DataFrame con los detalles de los locales cercanos.
+
+    Ejemplo:
+        df_base_datos = pd.read_csv('locales.csv')
+        user_pref = {
+            'Restaurant': {'weight': 3, 'sub_category': 1},
+            'Religion': {'weight': 2, 'sub_category': 1},
+            'Recreation': {'weight': 1, 'sub_category': 1}
+        }
+        lat_inm = [40.7128, 34.0522]
+        lon_inm = [-74.0060, -118.2437]
+        km = 5.0
+        resultados_df, locales_df = obtener_recomendacion(df_base_datos, user_pref, km, lat_inm, lon_inm)
+        print(resultados_df)
+        print(locales_df)
+    """
+    
     # Crear listas para almacenar los resultados y los DataFrames filtrados
     resultados = []
     df_locales_list = []
