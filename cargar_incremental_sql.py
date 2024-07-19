@@ -81,10 +81,10 @@ engine = create_engine_connection()
 
 # DataFrames y sus correspondientes nombres de tabla
 dfs = {
-    "metadatos_ML": df_metadatos,
-    "reviewsGoogle_ML": df_reviewsGoogle,
-    "locales_LA": df_metadatos_filtered,
-    "reviews_LA": df_reviewsGoogle_filtered
+    "metadatos_ml": df_metadatos,
+    "reviewsGoogle_ml": df_reviewsGoogle,
+    "locales_la": df_metadatos_filtered,
+    "reviews_la": df_reviewsGoogle_filtered
 }
 
 for table_name, df in dfs.items():
