@@ -27,6 +27,15 @@ Camino Federico | Londero Walter | Pizarro Hernan | Urteaga Facundo | Veron Cint
   <img src="https://img.shields.io/badge/Notion-2.x-purple">
 </p>
 
+# Propuesta de trabajo
+
+## Aplicación Deployada
+
+Puedes acceder a nuestra aplicación FindEdén® en el siguiente enlace:
+
+[FindEdén®](https://findeden.rj.r.appspot.com/)
+
+
 
 # Índice
 
@@ -41,6 +50,7 @@ Camino Federico | Londero Walter | Pizarro Hernan | Urteaga Facundo | Veron Cint
 *[Características de los datos](#características_de_los_datos)
 
 *[Plan de trabajo](#plan_de_trabajo)
+
 
 
 # Descripción del proyecto solicitado
