@@ -33,7 +33,7 @@ if val_rel in ["Mucho", "Normal", "Poco"]:
 val_rec = st.selectbox("Cuánto valor tiene para vos contar con lugares recreativos en tu barrio ?:", ["Mucho", "Normal", "Poco", "Nada"])
 recreation = None
 if val_rec in ["Mucho", "Normal", "Poco"]:
-    recreation = st.selectbox("A qué tipo de lugares te gusta acudir en general ?:", ['Arte/Música/Teatro', 'Clubes nocturno', 'Bares Deportivos/Bowling/Pool'])
+    recreation = st.selectbox("A qué tipo de lugares te gusta acudir en general ?:", ['Arte/Música/Teatro', 'Clubes nocturnos', 'Bares Deportivos/Bowling/Pool'])
 
 button_pressed = st.button("Generar mapa")
 
@@ -54,7 +54,7 @@ if button_pressed:
     val_rec_mapping = {"Mucho": 3, "Normal": 2, "Poco": 1, "Nada": 0}
     rec_p = val_rec_mapping[val_rec]
 
-    recreation_mapping = {'Arte/Música/Teatro': 1, 'Club nocturno': 2, 'Bares Deportivos/Bowling/Pool': 3}
+    recreation_mapping = {'Arte/Música/Teatro': 1, 'Clubes nocturnos': 2, 'Bares Deportivos/Bowling/Pool': 3}
     rec_cat = recreation_mapping[recreation] if recreation else 0
 
     lat_1 = 34.058092
