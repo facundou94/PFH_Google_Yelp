@@ -142,13 +142,13 @@ Para garantizar la calidad y eficacia de la integración de los datos en un sist
    <img src='Imagenes/7_calidad_yelp.JPG' width='1000'>
    </p>
 
-## Diagrama Entidad-relación
+Se descartan los datos de YELP debido a inconsistencias e insuficiencias en los mismos.
+* No tenía ubicaciones de la ciudad de Los Angeles (la segunda más grande de EEUU). 
+* El 94% de los datos de California eran de 3 ciudades.
 
-El modelo de entidad relación muestra como por un lado se relacionan las tablas de google maps y las tablas de Yelp entre sí.
-Para relacionar las tablas de un sistema y otro vamos a utilizar la ubicación de los locales.
-Su dirección, y sus ubicaciones geolocalizadas, utilizando una exactitud de ésta última acorde a nuestra necesidad.
-![DER](Imagenes/DER.png)
+De Google Maps. se poseen 194.000 reviews de 18.900 sitios de Los Angeles, lo que es suficiente para el correcto uso de la herramienta
 
+Debido a esto, **de descarta el uso de datos de YELP, centrando las herramientas en el uso de datos de Google Maps**.
 
 # Plan de trabajo
 
