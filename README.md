@@ -1,14 +1,23 @@
 <h1 align="center"> PROYECTO FINAL HENRY: GOOGLE - YELP  </h1>
 <h3 align="center"> Equipo de trabajo: Camino Federico, Londero Walter, Pizarro Hernan, Urteaga Facundo, Veron Cintia </h3>
-<h3 align="center"> Sprint actual: Sprint 1</h3>
 
    <p align="center">
    <img src='Imagenes/1_logo.JPG' width='400'>
    </p>
 
 <p align="left">
-   <img src="https://img.shields.io/badge/ESTADO-EN%20DESAROLLO-green">
-   </p>
+  <img src="https://img.shields.io/badge/ESTADO-EN%20DESARROLLO-green">
+  <img src="https://img.shields.io/badge/Python-3.x-blue">
+  <img src="https://img.shields.io/badge/Pandas-1.x-blueviolet">
+  <img src="https://img.shields.io/badge/SQLAlchemy-1.x-orange">
+  <img src="https://img.shields.io/badge/MySQL-8.x-blue"> 
+  <img src="https://img.shields.io/badge/Streamlit-1.x-red">
+  <img src="https://img.shields.io/badge/Google_Drive_API-1.x-red">
+  <img src="https://img.shields.io/badge/matplotlib-3.x-green">
+  <img src="https://img.shields.io/badge/NumPy-1.x-brightgreen">
+  <img src="https://img.shields.io/badge/Google_Cloud_BigQuery-1.x-yellow">
+  <img src="https://img.shields.io/badge/Power_BI-2.x-orange">
+</p>
 
 # Índice
 
@@ -160,10 +169,39 @@ Mediante la metodología AGILE, se definió un plan de trabajo con tres Sprints 
    <em>Figura: Entorno de NOTION </em>
    </p>
    
-## Stack Tecnológico
+## **Nuestro Stack Tecnológico**
 
 </p>
-Nuestro stack tecnológico combina potentes herramientas locales y en la nube para ofrecer soluciones eficientes y escalables. En el ámbito local, utilizamos Python para la limpieza de datos y el desarrollo de modelos de machine learning, apoyándonos en Jupyter Notebooks para la exploración de datos y el desarrollo de modelos. Herramientas como Pandas, NumPy y Scikit-Learn son fundamentales para el análisis y modelado de datos. En la nube, Amazon S3 proporciona almacenamiento para datos sin procesar y resultados procesados, mientras que Amazon Redshift facilita el almacenamiento y análisis de datos estructurados. Utilizamos Amazon SageMaker para construir, entrenar y desplegar modelos de machine learning, y Looker Studio para la visualización y creación de dashboards interactivos. Este stack garantiza escalabilidad, flexibilidad y eficiencia, permitiéndonos integrar diversas tecnologías en un ecosistema robusto y económico, con herramientas avanzadas para machine learning y una gestión simplificada gracias a las interfaces amigables de AWS.
+
+Este proyecto se basa en un robusto conjunto de tecnologías que abarcan desde la extracción y transformación de datos hasta la visualización y análisis de resultados.
+
+**Extracción y Transformación de Datos (ETL):**
+
+* **Python:** El núcleo de nuestro proceso ETL, proporcionando flexibilidad y un amplio ecosistema de librerías especializadas.
+* **Pandas:** La herramienta principal para manipular y analizar datos, facilitando la limpieza, transformación y agregación de información.
+* **SQLAlchemy:** Permite una interacción fluida con nuestra base de datos MySQL, asegurando la persistencia y consulta eficiente de los datos.
+* **Google Drive API:** Integración con Google Drive para acceder y descargar automáticamente los datos fuente.
+* **NumPy:** Proporciona soporte para operaciones numéricas y arrays, optimizando el rendimiento de cálculos complejos.
+
+**Almacenamiento y Versionado:**
+
+* **MySQL:** Nuestra base de datos relacional local, donde almacenamos los datos estructurados de manera organizada y accesible.
+* **Google Cloud BigQuery:** Almacén de datos en la nube altamente escalable y eficiente, utilizado para análisis y procesamiento de grandes volúmenes de datos.
+* **GitHub:** Plataforma de control de versiones que nos permite colaborar en el código de manera eficiente, manteniendo un historial de cambios y facilitando la implementación de nuevas funcionalidades.
+
+**Visualización y Análisis:**
+
+* **Streamlit:** Framework de Python que nos permite crear aplicaciones web interactivas para visualizar y explorar los resultados del ETL, así como para implementar el sistema de recomendaciones.
+* **Power BI:** Herramienta de inteligencia de negocios que utilizamos para crear dashboards y reportes personalizados, proporcionando una visión clara y accionable de los indicadores clave de rendimiento (KPIs) y otros aspectos relevantes del proyecto.
+* **matplotlib:** Librería de visualización de datos en Python, utilizada en el proceso ETL para generar gráficos que nos ayudan a comprender mejor los datos.
+
+**Organización y Colaboración:**
+
+* **Notion:** Plataforma centralizada que utilizamos para documentar el proyecto, organizar tareas, gestionar el conocimiento y fomentar la comunicación efectiva entre los miembros del equipo.
+
+**En resumen,** nuestro stack tecnológico combina herramientas de código abierto, soluciones empresariales y servicios en la nube para crear un flujo de trabajo completo y escalable, desde la obtención de datos hasta la generación de insights valiosos para la toma de decisiones.
+
+
 <p align="justify">
 
    <p align="center">
