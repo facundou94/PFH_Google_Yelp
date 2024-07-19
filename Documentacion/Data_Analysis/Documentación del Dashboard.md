@@ -4,9 +4,42 @@
 
 Este documento describe la creación y configuración de un dashboard interactivo en Power BI para una inmobiliaria. El dashboard está diseñado para visualizar y analizar diversos KPIs relacionados con la ocupación, satisfacción y renovación de contratos de propiedades. Los datos se han extraído de una base de datos MySQL proporcionada por la inmobiliaria.
 
+
 ## Fuentes de Datos
 
 Los datos utilizados en este dashboard provienen de una base de datos MySQL. La conexión a esta base de datos se realizó mediante las herramientas de importación de datos de Power BI.
+
+
+
+<p align="justify">
+
+   <p align="center">
+   <img src='Imagenes/dash_img1.png' width='1000'>
+   </p>
+   <p align="center">
+     <em>Figura: Dashboard </em>
+   </p>
+
+
+   <p align="justify">
+
+   <p align="center">
+   <img src='Imagenes/dash_img2.png' width='1000'>
+   </p>
+   <p align="center">
+     <em>Figura: Dashboard </em>
+   </p>
+
+
+   <p align="justify">
+
+   <p align="center">
+   <img src='Imagenes/dash_img2.png' width='100'>
+   </p>
+   <p align="center">
+     <em>Figura: Dashboard </em>
+   </p>
+
 
 ## KPIs en el Dashboard
 

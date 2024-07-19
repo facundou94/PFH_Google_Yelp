@@ -302,7 +302,7 @@ FindEdén® transforma datos complejos en insights valiosos, permitiendo una ges
 <p align="justify">
 
    <p align="center">
-   <img src='Imagenes/dash_img1.png' width='1400'>
+   <img src='Imagenes/imagen.png' width='1400'>
    </p>
    <p align="center">
      <em>Figura: Dashboard </em>
