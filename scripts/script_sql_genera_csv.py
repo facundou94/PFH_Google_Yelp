@@ -3,7 +3,7 @@ import mysql.connector
 import pandas as pd
 
 def extraer_tablas_mysql_a_csv(host='localhost', port=3307, user='root', password='2236',
-                               database='Legacy_Inmobiliaria', csv_directory='datasets/SQL/'):
+                               database='Legacy_Inmobiliaria', csv_directory='Archivos/SQL/'):
     """Extrae datos de tablas MySQL y los guarda en archivos CSV.
 
     Args:
