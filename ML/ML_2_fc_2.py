@@ -16,8 +16,8 @@ from itertools import product
 
 #### 2. Carga de datos
 
-df_locales = pd.read_csv("locales_LA.csv")
-df_reviews = pd.read_csv("reviews_LA.csv")
+df_locales = pd.read_csv("archivos/locales_LA.csv")
+df_reviews = pd.read_csv("archivos/reviews_LA.csv")
 
 #### 3. Acondicionamiento de datos
 
