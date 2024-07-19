@@ -1,3 +1,7 @@
+# Aplicación para ejecutar mediante streamlit
+
+# Carga de librerías
+
 import streamlit as st
 import pandas as pd
 import folium
