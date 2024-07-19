@@ -119,4 +119,3 @@ Este script facilita la carga incremental de datos desde archivos CSV a una base
 
 ---
 
-Puedes guardar este contenido en un archivo con extensión `.md` para incluirlo en tu documentación técnica.
