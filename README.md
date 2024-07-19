@@ -55,7 +55,7 @@ Entrenamiento y puesta en producción de un modelo de machine learning de clasif
 ## Quiénes somos
 
    <p align="center">
-   <img src='Imagenes/2_logo_empresa.JPG' width='400'>
+   <img src='Imagenes/2_logo_empresa.JPG' width='800'>
    </p>
    
 </p>
@@ -65,7 +65,7 @@ EdenFornia Solutions es una empresa innovadora que ofrece soluciones informátic
 ## Equipo de trabajo
 
    <p align="center">
-   <img src='Imagenes/3_equipo.JPG' width='400'>
+   <img src='Imagenes/3_equipo.JPG' width='800'>
    </p>
    
 </p>
@@ -93,7 +93,7 @@ Por ejemplo, en áreas urbanas como Los Ángeles y San Francisco, la proximidad 
 ## Aplicación FindEdén®
 
    <p align="center">
-   <img src='Imagenes/4_logo_app.png' width='400'>
+   <img src='Imagenes/4_logo_app.png' width='800'>
    </p>
    
 </p>   
@@ -111,7 +111,7 @@ Desde EdenFornia Solutions®, se propone abordar esta problemática con la creac
 * **Impacto en el Mercado**: Potencia la toma de decisiones de los inquilinos, aumentando acuerdos firmados y mejorando la tasa de renovación de contratos en el sector inmobiliario.
 
    <p align="center">
-   <img src='Imagenes/5_propuesta.JPG' width='400'>
+   <img src='Imagenes/5_propuesta.JPG' width='1000'>
    </p>
 
 ## Medidas de desempeño
@@ -121,11 +121,11 @@ Nuestros cuatro KPIs abordan aspectos clave del servicio inmobiliario, ofreciend
 <p align="justify">
 
 <p align="center">
-   <img src='Imagenes/desempeño1.JPG' width='400'>
+   <img src='Imagenes/desempeño1.JPG' width='1000'>
    </p>
 
 <p align="center">
-   <img src='Imagenes/desempeño2.JPG' width='400'>
+   <img src='Imagenes/desempeño2.JPG' width='1000'>
    </p>
 
 # Características de los datos
@@ -135,11 +135,11 @@ Para garantizar la calidad y eficacia de la integración de los datos en un sist
 <p align="justify">
 
    <p align="center">
-   <img src='Imagenes/6_calidad_google.JPG' width='400'>
+   <img src='Imagenes/6_calidad_google.JPG' width='1000'>
    </p>
 
    <p align="center">
-   <img src='Imagenes/7_calidad_yelp.JPG' width='400'>
+   <img src='Imagenes/7_calidad_yelp.JPG' width='1000'>
    </p>
 
 ## Diagrama Entidad-relación
@@ -163,7 +163,7 @@ Mediante la metodología AGILE, se definió un plan de trabajo con tres Sprints 
 <p align="justify">
 
    <p align="center">
-   <img src='Imagenes/8_notion.JPG' width='400'>
+   <img src='Imagenes/8_notion.JPG' width='1600'>
    </p>
    <p align="center">
    <em>Figura: Entorno de NOTION </em>
@@ -205,7 +205,7 @@ Este proyecto se basa en un robusto conjunto de tecnologías que abarcan desde l
 <p align="justify">
 
    <p align="center">
-   <img src='Imagenes/9_stack.JPG' width='400'>
+   <img src='Imagenes/9_stack.JPG' width='1600'>
    </p>
    <p align="center">
      <em>Figura: Stack Tecnológico </em>
@@ -283,7 +283,7 @@ FindEdén® transforma datos complejos en insights valiosos, permitiendo una ges
 <p align="justify">
 
    <p align="center">
-   <img src='Imagenes/dash_img1.png' width='400'>
+   <img src='Imagenes/dash_img1.png' width='1400'>
    </p>
    <p align="center">
      <em>Figura: Dashboard </em>
