@@ -2,7 +2,8 @@
 
 ### Equipo de trabajo 👨‍💻👩‍💻
 
-Camino Federico | Londero Walter | Pizarro Hernan | Urteaga Facundo | Veron Cintia | Mentor: Martin Morales
+Camino Federico | Londero Walter | Pizarro Hernan | Urteaga Facundo | Veron Cintia
+Mentor: Martin Morales
 :---:|:---:|:---:|:---:|:---:
 
    <p align="center">
