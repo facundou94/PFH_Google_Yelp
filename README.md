@@ -2,7 +2,7 @@
 
 ### Equipo de trabajo 👨‍💻👩‍💻
 
-Camino Federico | Londero Walter | Pizarro Hernan | Urteaga Facundo | Veron Cintia
+Camino Federico | Londero Walter | Pizarro Hernan | Urteaga Facundo | Veron Cintia | Mentor: Martin Morales
 :---:|:---:|:---:|:---:|:---:
 
    <p align="center">
@@ -307,3 +307,65 @@ FindEdén® transforma datos complejos en insights valiosos, permitiendo una ges
    <p align="center">
      <em>Figura: Dashboard </em>
    </p>
+
+## Machine Learning. Algoritmo FindEden®.
+</p>
+Nuestro sistema de recomendación está basado en el algoritmo FindEden®, el cual comprende los algoritmos Fidelity®, TrendPredictor® y EdenRating®. El propósito final de este sistema es el de brindar mediante nuestra aplicación una puntuación a cada inmueble que comprende la oferta del servicio inmobiliario a partir de nuestra base de datos y las preferencias del usuario.
+
+<p align="justify">
+
+   <p align="center">
+   <img src='Imagenes/ml_1.JPG' width='1400'>
+   </p>
+   <p align="center">
+     <em>Figura: Algoritmos de nuestro sistema de recomendación</em>
+   </p>
+
+</p>
+* **Algoritmo Fidelity®:** Algoritmo que realiza la ponderación de usuarios que hayan realizado al menos 4 reseñas en base a la cantidad de reseñas hechas, la relación entre el puntaje de sus reseñas y el puntaje promedio de los locales, y la variedad de locales puntuados. Luego de esta ponderación, se recalculan los ratings de los locales que tengan reseñas de usuarios ponderados, para tener un valor mas preciso de los usuarios que tienen opiniones mas confiables.
+* **Algoritmo TrendPredictor®:** Sistema que implementa diferentes algoritmos de forecast sobre los locales en base a la cantidad de meses que tienen de reseñas. Las predicciones hechas son a tres meses.
+* **Algoritmo EdenRating®:** Algoritmo que puntúa cada inmueble en base a las preferencias de los usuarios y las bases de datos.
+<p align="justify">
+   
+<p align="justify">
+
+   <p align="center">
+   <img src='Imagenes/ml_4.JPG' width='1400'>
+   </p>
+   <p align="center">
+     <em>Figura: Diagrama de flujo del sistema de recomendación FindEden</em>
+   </p>
+
+<p align="justify">
+
+## Interfaz de Usuario
+</p>
+La interfaz de usuario es implementada mediante el framework open-source streamlit (Link al comienzo del readme), la cual consta de menú desplegables para seleccionar las preferencias del usuario. Una vez seleccionadas, se genera un mapa interactivo con las ubicaciones y puntuaciones de los inmuebles y locales.
+<p align="justify">
+
+<p align="justify">
+
+   <p align="center">
+   <img src='Imagenes/ml_2.JPG' width='1400'>
+   </p>
+   <p align="center">
+     <em>Figura: Imagenes de la interfaz</em>
+   </p>
+<p align="justify">
+
+   <p align="center">
+   <img src='Imagenes/ml_3.JPG' width='1400'>
+   </p>
+   <p align="center">
+     <em>Figura: Imagenes del mapa interactivo generado a partir de las preferencias del usuario</em>
+   </p>
+
+## Dashboard 
+</p>
+En el competitivo mundo de la gestión inmobiliaria, la capacidad para tomar decisiones basadas en datos precisos y actualizados es esencial. Con el objetivo de optimizar la gestión de propiedades y mejorar la rentabilidad, FindEdén® ha desarrollado un avanzado dashboard interactivo que proporciona una visión integral y detallada del rendimiento de su portafolio inmobiliario.
+
+Este dashboard está diseñado para ofrecer una visualización clara y concisa de los KPIs más relevantes, como las tasas de ocupación, los tiempos de vacancia, y la satisfacción de los inquilinos. Mediante una interfaz intuitiva, los usuarios pueden monitorear en tiempo real el estado de sus propiedades, identificar tendencias emergentes, y tomar decisiones informadas con rapidez.
+
+FindEdén® transforma datos complejos en insights valiosos, permitiendo una gestión eficiente y estratégica de propiedades. Con este dashboard, las inmobiliarias pueden mejorar sus estrategias de marketing, optimizar la ocupación y renovación de contratos, y comunicar resultados con claridad a stakeholders e inversionistas.
+
+<p align="justify">
