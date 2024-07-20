@@ -393,6 +393,8 @@ En el competitivo mundo de la gestión inmobiliaria, la capacidad para tomar dec
 
 Este dashboard está diseñado para ofrecer una visualización clara y concisa de los KPIs más relevantes, como las tasas de ocupación, los tiempos de vacancia, y la satisfacción de los inquilinos. Mediante una interfaz intuitiva, los usuarios pueden monitorear en tiempo real el estado de sus propiedades, identificar tendencias emergentes, y tomar decisiones informadas con rapidez.
 
+Link al dashboard: https://app.powerbi.com/view?r=eyJrIjoiNzlkYWRjZTUtZTZhNi00NzM0LTg2MzMtMjMwZTBmNDlkYWJjIiwidCI6IjQ4MWNkNjcxLTY3NWMtNDA0MC05NzFmLWZjMDBmZTk1OGY2NiIsImMiOjR9&pageName=974704915ed9c65d020a
+
 FindEdén® transforma datos complejos en insights valiosos, permitiendo una gestión eficiente y estratégica de propiedades. Con este dashboard, las inmobiliarias pueden mejorar sus estrategias de marketing, optimizar la ocupación y renovación de contratos, y comunicar resultados con claridad a stakeholders e inversionistas.
 
 <p align="justify">
