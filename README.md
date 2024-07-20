@@ -330,7 +330,7 @@ Nuestro sistema de recomendación está basado en el algoritmo FindEden®, el cu
 <p align="justify">
 
    <p align="center">
-   <img src='Imagenes/ml_4.JPG' width='1400'>
+   <img src='Imagenes/ml_4.png' width='1400'>
    </p>
    <p align="center">
      <em>Figura: Diagrama de flujo del sistema de recomendación FindEden</em>
