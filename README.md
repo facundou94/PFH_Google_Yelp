@@ -169,6 +169,33 @@ De Google Maps. se poseen 194.000 reviews de 18.900 sitios de Los Angeles, lo qu
 
 Debido a esto, **de descarta el uso de datos de YELP, centrando las herramientas en el uso de datos de Google Maps**.
 
+# Analisis estadístico
+
+Se realiza un análisis estadístico de las reviews y los metadatos de los sitios de google maps.
+A raíz del mismo, se llega a las siguientes conclusiones generales:
+
+* A medida que aumenta la cantidad de reviews de un sitio, su promedio suele mejorar. Esto está relacionado con que a mejor puntaje, más visitas, por lo tanto más reviews
+
+![reviews_y_puntaje](Imagenes/EDA-GoogleMaps/reviewsxvsrating.png)
+
+* No existe una categoría especial que tenga un puntaje significativamente mayor que otro.
+
+![calificacion_categorias](Imagenes/EDA-GoogleMaps/ratingxcategoria.png)
+
+* Los usuarios suelen sacar fotos de los establecimientos con puntajes muy buenos
+
+![calificacion_por_foto](Imagenes/EDA-GoogleMaps/promedio_calificacion_por_fotos.png)
+
+* Las reviews se dan en horarios de actividad normal. No existe una categoría global que tenga más reviews a un horario determinado.
+
+![horas](Imagenes/EDA-GoogleMaps/reviewsxhora.png)
+
+* Al igual que la actividad económica y turística de Los Angeles, las reviews crecen en meses de verano. Tuvieron una caída en momento más crítico de la pandemia por Covid.
+
+![anio](Imagenes/EDA-GoogleMaps/reviews_por_mes_y_ano.png)
+
+* La base de datos de Metadata tiene más valores que las reviews accedidas. Tienen horizontes temporales diferentes.
+
 # Plan de trabajo
 
 </p>
