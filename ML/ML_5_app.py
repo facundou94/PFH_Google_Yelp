@@ -7,7 +7,7 @@ import pandas as pd
 import folium
 from streamlit_folium import folium_static
 from folium.features import DivIcon
-import ML_funciones
+import ML_4_funciones
 import matplotlib.colors as mcolors
 
 df_locales_ml = pd.read_csv("archivos/df_locales_ml.csv")
@@ -17,10 +17,10 @@ def get_color(score):
     norm = mcolors.Normalize(vmin=0, vmax=10)
     return mcolors.rgb2hex(cmap(norm(score)))
 
-with open("archivo/style.css") as f:
+with open("archivos/style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-st.image("archivo/banner.jpg", width=1000)
+st.image("archivos/banner.jpg", width=1000)
 st.title("FindEden: Encuentra tu propio Eden")
 st.header("Bienvenido/a. Selecciona tus preferencias:")
 
@@ -74,7 +74,7 @@ if button_pressed:
     lat_6 = 33.993401
     lon_6 = -118.278310
 
-    lat_inm, lon_inm = ML_funciones.group_coordinates(
+    lat_inm, lon_inm = ML_4_funciones.group_coordinates(
         lat_1, lon_1,
         lat_2, lon_2,
         lat_3, lon_3,
@@ -83,9 +83,9 @@ if button_pressed:
         lat_6, lon_6
     )
 
-    user_pref = ML_funciones.generate_user_preferences(res_p, res_cat, rel_p, rel_cat, rec_p, rec_cat, 0)
+    user_pref = ML_4_funciones.generate_user_preferences(res_p, res_cat, rel_p, rel_cat, rec_p, rec_cat, 0)
 
-    df_App, df_locales = ML_funciones.obtener_recomendacion(df_locales_ml, user_pref, 0.5, lat_inm, lon_inm)
+    df_App, df_locales = ML_4_funciones.obtener_recomendacion(df_locales_ml, user_pref, 0.5, lat_inm, lon_inm)
 
     m = folium.Map(location=[df_App['lat'].mean(), df_App['lon'].mean()], zoom_start=12)
 
